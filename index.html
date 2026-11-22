@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TalcoCalendar</title>
+<meta name="theme-color" content="#4f8cff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TalcoCalendar">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lg" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="2" seed="4" result="n"/><feGaussianBlur in="n" stdDeviation="2.5" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="26" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="bg"><i></i><i></i><i></i><i></i></div>
+<div class="app">
+ <header class="glass top">
+  <img src="icon.svg" class="logo" alt=""><h1>Talco<span>Calendar</span></h1>
+  <button id="today" class="pillbtn">Aujourd’hui</button>
+  <button id="prev" class="ib" aria-label="Précédent">‹</button><button id="next" class="ib" aria-label="Suivant">›</button>
+  <h2 id="title"></h2>
+  <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="q" type="search" placeholder="Rechercher"></label>
+  <button id="bell" class="ib" aria-label="Activer les notifications"><svg viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg></button>
+  <button id="theme" class="ib" aria-label="Thème">◐</button>
+ </header>
+ <div class="wrap">
+  <aside class="glass side">
+   <button id="create" class="create">＋ Créer</button>
+   <div id="mini"></div>
+   <div class="legend"><b>Calendriers</b><label><input type="checkbox" id="showEv" checked>Événements</label><label><input type="checkbox" id="showTk" checked>Tâches</label></div>
+  </aside>
+  <main id="view"></main>
+ </div>
+</div>
+<button id="fab" class="fab" aria-label="Créer">＋</button>
+<nav class="dock" id="dock">
+ <span class="pill"></span>
+ <button data-v="month"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Mois</button>
+ <button data-v="week"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M9 10v11M15 10v11M3 10h18"/></svg>Semaine</button>
+ <button data-v="day"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M3 10h18"/><circle cx="12" cy="15.5" r="2.4"/></svg>Jour</button>
+ <button data-v="agenda"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Agenda</button>
+ <button data-v="tasks"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>Tâches</button>
+</nav>
+<dialog id="dlg" class="modal"><form id="f" method="dialog">
+ <div class="tabs"><button type="button" data-t="ev" class="on">Événement</button><button type="button" data-t="tk">Tâche</button></div>
+ <input id="fTitle" placeholder="Ajouter un titre" required>
+ <div class="row"><label>Date<input type="date" id="fDate" required></label><label>Début<input type="time" id="fStart" value="09:00"></label><label class="onlyEv">Fin<input type="time" id="fEnd" value="10:00"></label></div>
+ <label class="chk onlyEv"><input type="checkbox" id="fAll">Toute la journée</label>
+ <div class="row onlyEv"><label>Répétition<select id="fRep"><option value="none">Ne se répète pas</option><option value="daily">Tous les jours</option><option value="weekly">Toutes les semaines</option><option value="monthly">Tous les mois</option><option value="yearly">Tous les ans</option></select></label>
+ <label>Notification<select id="fNot"><option value="-1">Aucune</option><option value="0">À l’heure</option><option value="5">5 min avant</option><option value="10" selected>10 min avant</option><option value="30">30 min avant</option><option value="60">1 h avant</option><option value="1440">1 jour avant</option></select></label></div>
+ <input id="fLoc" class="onlyEv" placeholder="Lieu">
+ <textarea id="fDesc" class="onlyEv" placeholder="Description" rows="2"></textarea>
+ <div class="colors onlyEv" id="fCol"></div>
+ <div class="act"><button type="button" id="del" class="danger">Supprimer</button><button type="button" id="cancel">Annuler</button><button type="submit" class="primary">Enregistrer</button></div>
+</form></dialog>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
