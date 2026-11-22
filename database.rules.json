@@ -1,0 +1,155 @@
+{
+  "rules": {
+    ".read": "auth != null && (root.child('users').child(auth.uid).child('id').val() === 'anton' || root.child('users').child(auth.uid).child('id').val() === 'talco')",
+    ".write": "auth != null && (root.child('users').child(auth.uid).child('id').val() === 'anton' || root.child('users').child(auth.uid).child('id').val() === 'talco')",
+    "users": {
+      ".read": "auth != null",
+      ".indexOn": [
+        "idLower"
+      ],
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['id', 'idLower', 'name']) && (!data.exists() || newData.child('id').val() === data.child('id').val())",
+        "id": {
+          ".validate": "newData.isString() && newData.val().matches(/^[a-z0-9_.-]{3,20}$/) && newData.parent().parent().parent().child('idIndex').child(newData.val()).val() === auth.uid"
+        },
+        "idLower": {
+          ".validate": "newData.isString() && newData.val() === newData.parent().child('id').val()"
+        },
+        "name": {
+          ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 40"
+        },
+        "photo": {
+          ".validate": "newData.isString() && newData.val().length <= 20000"
+        }
+      }
+    },
+    "requests": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$from": {
+          ".read": "auth != null && auth.uid === $from",
+          ".write": "auth != null && (auth.uid === $from || auth.uid === $uid)"
+        }
+      }
+    },
+    "friends": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$f": {
+          ".write": "auth != null && ((auth.uid === $uid && (!newData.exists() || root.child('requests').child($uid).child($f).exists() || root.child('friends').child($f).child($uid).exists())) || (auth.uid === $f && (!newData.exists() || root.child('requests').child($f).child($uid).exists())))"
+        }
+      }
+    },
+    "userChats": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$o": {
+          ".write": "auth != null && (auth.uid === $uid || auth.uid === $o)",
+          ".validate": "newData.hasChildren(['last', 'ts', 'from']) && newData.child('last').isString() && newData.child('last').val().length <= 200"
+        }
+      }
+    },
+    "chats": {
+      "$cid": {
+        ".read": "auth != null && $cid.contains(auth.uid)",
+        "messages": {
+          "$m": {
+            ".write": "auth != null && $cid.contains(auth.uid) && ((!data.exists() && root.child('friends').child(auth.uid).child($cid.replace(auth.uid, '').replace('_', '')).exists() && root.child('friends').child($cid.replace(auth.uid, '').replace('_', '')).child(auth.uid).exists()) || (data.exists() && data.child('from').val() === auth.uid))",
+            ".validate": "newData.hasChildren(['from', 'text', 'ts']) && newData.child('from').val() === auth.uid && newData.child('text').isString() && newData.child('text').val().length >= 1 && newData.child('text').val().length <= 1000 && ((!data.exists() && newData.child('ts').val() === now) || (data.exists() && newData.child('ts').val() === data.child('ts').val()))",
+            "edited": {
+              ".validate": "newData.isBoolean()"
+            },
+            "kind": {
+              ".validate": "newData.val() === 'img' || newData.val() === 'aud'"
+            },
+            "dur": {
+              ".validate": "newData.isNumber()"
+            },
+            "reacts": {
+              "$u": {
+                ".write": "auth != null && $cid.contains(auth.uid) && $u === auth.uid",
+                ".validate": "newData.isString() && newData.val().length <= 8"
+              }
+            },
+            "reply": {
+              ".validate": "newData.hasChildren(['k', 'from', 'text']) && newData.child('text').isString() && newData.child('text').val().length <= 140",
+              "k": {
+                ".validate": "newData.isString()"
+              },
+              "from": {
+                ".validate": "newData.isString()"
+              }
+            }
+          }
+        }
+      }
+    },
+    "scheduled": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "$s": {
+          ".validate": "newData.hasChildren(['to', 'text', 'sendAt']) && newData.child('to').isString() && newData.child('text').isString() && newData.child('text').val().length >= 1 && newData.child('text').val().length <= 1000 && newData.child('sendAt').isNumber()"
+        }
+      }
+    },
+    "media": {
+      "$cid": {
+        "$m": {
+          ".read": "auth != null && $cid.contains(auth.uid)",
+          ".write": "auth != null && $cid.contains(auth.uid) && (!data.exists() || root.child('chats').child($cid).child('messages').child($m).child('from').val() === auth.uid || (!newData.exists() && ((data.child('readAt').exists() && data.child('readAt').val() < now - 86400000) || root.child('chats').child($cid).child('messages').child($m).child('ts').val() < now - 604800000)))",
+          ".validate": "newData.hasChildren(['mime', 'b64']) && newData.child('mime').isString() && newData.child('mime').val().length <= 60 && newData.child('b64').isString() && newData.child('b64').val().length <= 1200000",
+          "readAt": {
+            ".write": "auth != null && $cid.contains(auth.uid) && data.parent().exists() && !data.exists() && root.child('chats').child($cid).child('messages').child($m).child('from').val() !== auth.uid",
+            ".validate": "newData.val() === now"
+          }
+        }
+      }
+    },
+    "push": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('friends').child(auth.uid).child($uid).exists())",
+        ".write": "auth != null && auth.uid === $uid",
+        "$k": {
+          ".validate": "newData.isString() && newData.val().length <= 800"
+        }
+      }
+    },
+    "calls": {
+      "$cid": {
+        ".read": "auth != null && $cid.contains(auth.uid)",
+        ".write": "auth != null && $cid.contains(auth.uid)",
+        "offer": {
+          ".validate": "newData.hasChildren(['type', 'sdp']) && newData.child('sdp').val().length < 20000"
+        },
+        "answer": {
+          ".validate": "newData.hasChildren(['type', 'sdp']) && newData.child('sdp').val().length < 20000"
+        }
+      }
+    },
+    "incoming": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && (auth.uid === $uid || newData.child('from').val() === auth.uid || data.child('from').val() === auth.uid) && (!newData.exists() || auth.uid === $uid || root.child('friends').child(auth.uid).child($uid).exists())",
+        ".validate": "newData.hasChildren(['from', 'kind', 'cid', 'ts']) && newData.child('ts').val() === now"
+      }
+    },
+    "inbox": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$id": {
+          ".write": "auth != null && (auth.uid === $uid || (!data.exists() && newData.child('from').val() === auth.uid && (root.child('friends').child(auth.uid).child($uid).exists() || root.child('requests').child($uid).child(auth.uid).exists())))",
+          ".validate": "newData.hasChildren(['type', 'from', 'text', 'ts']) && newData.child('text').isString() && newData.child('text').val().length <= 140 && newData.child('ts').val() === now"
+        }
+      }
+    },
+    "idIndex": {
+      "$id": {
+        ".read": "auth != null",
+        ".write": "auth != null && ((!data.exists() && newData.val() === auth.uid) || (data.val() === auth.uid && !newData.exists()))",
+        ".validate": "$id.matches(/^[a-z0-9_.-]{3,20}$/) && newData.isString()"
+      }
+    }
+  }
+}

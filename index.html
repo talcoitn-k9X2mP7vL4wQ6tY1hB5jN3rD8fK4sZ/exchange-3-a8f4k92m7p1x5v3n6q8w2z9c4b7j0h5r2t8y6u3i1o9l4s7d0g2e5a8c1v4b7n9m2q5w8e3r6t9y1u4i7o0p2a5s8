@@ -1,60 +1,1573 @@
-<!doctype html>
-<html lang="fr"><head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TalcoCalendar</title>
-<meta name="theme-color" content="#4f8cff">
+<title>TalcoExchange – Messagerie du GroupeTalco | TalcoITN</title>
+<meta name="google-site-verification" content="TUBi6xTFf23UYii6oMmOaSj-DRsPRPsgWL4_IAmncho">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="description" content="TalcoExchange (Talco Exchange, Echange Talco) : la messagerie instantanée du GroupeTalco. Messages, photos, vocaux, appels audio et vidéo. Compte TalcoITN / ITN 3.">
+<meta name="keywords" content="TalcoExchange, Talco Exchange, Echange Talco, Exchange Talco, Exchange GitHub, Talco GitHub, TalcoITN, Talco ITN, ITN 3, ITNB Talco, GroupeTalco, messagerie, chat, appel vidéo">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="GroupeTalco">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TalcoExchange">
+<meta property="og:title" content="TalcoExchange – Messagerie du GroupeTalco | TalcoITN">
+<meta property="og:description" content="TalcoExchange (Talco Exchange, Echange Talco) : la messagerie instantanée du GroupeTalco. Messages, photos, vocaux, appels audio et vidéo. Compte TalcoITN / ITN 3.">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TalcoExchange – Messagerie du GroupeTalco | TalcoITN">
+<meta name="twitter:description" content="TalcoExchange (Talco Exchange, Echange Talco) : la messagerie instantanée du GroupeTalco. Messages, photos, vocaux, appels audio et vidéo. Compte TalcoITN / ITN 3.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "TalcoExchange", "alternateName": ["Talco Exchange", "Echange Talco", "Exchange Talco", "TalcoITN", "Talco ITN", "ITN 3", "ITNB Talco", "Exchange GitHub", "Talco GitHub"], "description": "TalcoExchange (Talco Exchange, Echange Talco) : la messagerie instantanée du GroupeTalco. Messages, photos, vocaux, appels audio et vidéo. Compte TalcoITN / ITN 3.", "applicationCategory": "CommunicationApplication", "operatingSystem": "Any", "inLanguage": "fr", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "creator": {"@type": "Organization", "name": "GroupeTalco", "alternateName": ["TalcoInc", "TalcoAdministration"]}}</script>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="TalcoCalendar">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
-</head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lg" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="2" seed="4" result="n"/><feGaussianBlur in="n" stdDeviation="2.5" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="26" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
-<div class="bg"><i></i><i></i><i></i><i></i></div>
-<div class="app">
- <header class="glass top">
-  <img src="icon.svg" class="logo" alt=""><h1>Talco<span>Calendar</span></h1>
-  <button id="today" class="pillbtn">Aujourd’hui</button>
-  <button id="prev" class="ib" aria-label="Précédent">‹</button><button id="next" class="ib" aria-label="Suivant">›</button>
-  <h2 id="title"></h2>
-  <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="q" type="search" placeholder="Rechercher"></label>
-  <button id="bell" class="ib" aria-label="Activer les notifications"><svg viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg></button>
-  <button id="theme" class="ib" aria-label="Thème">◐</button>
- </header>
- <div class="wrap">
-  <aside class="glass side">
-   <button id="create" class="create">＋ Créer</button>
-   <div id="mini"></div>
-   <div class="legend"><b>Calendriers</b><label><input type="checkbox" id="showEv" checked>Événements</label><label><input type="checkbox" id="showTk" checked>Tâches</label></div>
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TalcoExchange">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --bg:#fff;--bg2:#f2f2f7;--fill:rgba(118,118,128,.12);
+  --txt:#000;--sub:#8e8e93;--sep:rgba(60,60,67,.16);
+  --blue:#007aff;--sent:#34c759;--recv:#e9e9eb;--danger:#ff3b30;
+  --rowline:rgba(255,255,255,.55);--scrim:rgba(255,255,255,.14);--g-a:1;--lg:.7;--g-bg:rgba(255,255,255,.06);--g-edge:rgba(255,255,255,.7);--g-hi:rgba(255,255,255,.95);--g-lo:rgba(255,255,255,.35);
+  --g-sh:0 10px 30px rgba(0,0,0,.13),0 1px 4px rgba(0,0,0,.08);--g-tint:rgba(120,125,140,.10);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#000;--bg2:#1c1c1e;--fill:rgba(118,118,128,.24);
+  --txt:#fff;--sub:#98989f;--sep:rgba(84,84,88,.55);
+  --blue:#0a84ff;--sent:#30d158;--recv:#262629;--danger:#ff453a;
+  --rowline:rgba(255,255,255,.22);--scrim:rgba(0,0,0,.28);--g-a:.3;--g-bg:rgba(40,40,46,.14);--g-edge:rgba(255,255,255,.14);--g-hi:rgba(255,255,255,.34);--g-lo:rgba(255,255,255,.08);
+  --g-sh:0 10px 30px rgba(0,0,0,.55),0 1px 4px rgba(0,0,0,.4);--g-tint:rgba(255,255,255,.04);
+}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;overscroll-behavior:none}
+body{font-family:var(--font);color:var(--txt);background:var(--bg);overflow:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-.011em}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+a,.link{color:var(--blue);text-decoration:none;cursor:pointer;font-weight:500}
+.hidden{display:none!important}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== LIQUID GLASS (intensité --lg : 0 → 1) ===== */
+.glass{position:relative;isolation:isolate;
+  background:linear-gradient(155deg,rgba(255,255,255,calc((.04 + .12*var(--lg))*var(--g-a))),rgba(255,255,255,calc((.01 + .03*var(--lg))*var(--g-a))) 62%),var(--g-bg);
+  backdrop-filter:blur(calc(6px + 26px*var(--lg))) saturate(calc(1 + 1.1*var(--lg))) brightness(1.05);-webkit-backdrop-filter:blur(calc(6px + 26px*var(--lg))) saturate(calc(1 + 1.1*var(--lg))) brightness(1.05);
+  box-shadow:inset 0 0 0 .5px var(--g-edge),inset 0 calc(2px*var(--lg)) 3px -1px var(--g-hi),inset 0 calc(-2px*var(--lg)) 3px -1px var(--g-lo),inset 0 0 calc(26px*var(--lg)) var(--g-tint),var(--g-sh);
+  transition:transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .3s}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:calc(.6px + 1.1px*var(--lg));pointer-events:none;z-index:1;
+  background:conic-gradient(from 200deg,rgba(255,255,255,calc(.95*var(--lg))),rgba(255,255,255,0) 22%,rgba(255,255,255,calc(.45*var(--lg))) 50%,rgba(255,255,255,0) 72%,rgba(255,255,255,calc(.95*var(--lg))));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:radial-gradient(130% 80% at 15% -15%,rgba(255,255,255,calc(.5*var(--lg))),transparent 55%),radial-gradient(90% 60% at 90% 120%,rgba(255,255,255,calc(.3*var(--lg))),transparent 60%)}
+button.glass:active,.glass.press:active{transform:scale(1.08)}
+.circ{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none}
+.circ.sm{width:34px;height:34px}
+
+/* ===== BOUTONS / CHAMPS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;color:#fff;
+  background:var(--blue);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(0,0,0,.08);transition:transform .3s cubic-bezier(.3,1.5,.5,1),opacity .2s}
+.btn:active{transform:scale(.95)}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.btn.soft{background:var(--fill);color:var(--blue);box-shadow:none}
+.btn.danger{background:rgba(255,59,48,.12);color:var(--danger);box-shadow:none}
+.btn.sm{padding:6px 14px;font-size:14px}
+.btn.big{width:100%;padding:15px;font-size:17px}
+.field{width:100%;padding:13px 16px;border-radius:14px;border:0;background:var(--fill);outline:none;font-size:17px;transition:box-shadow .2s}
+.field:focus{box-shadow:0 0 0 3px rgba(0,122,255,.3)}
+.field::placeholder{color:var(--sub)}
+
+/* ===== AUTH ===== */
+#auth{position:fixed;inset:0;z-index:2;overflow:auto;display:grid;place-items:center;padding:24px}
+.auth-in{width:min(380px,100%);display:flex;flex-direction:column;gap:14px;padding:12px 0}
+.logo{width:84px;height:84px;border-radius:22px;margin:0 auto;display:block;box-shadow:0 10px 30px rgba(52,199,89,.35)}
+.auth-in h1{margin:6px 0 0;text-align:center;font-size:30px;font-weight:700;letter-spacing:-.03em}
+.auth-in .sub{margin:-8px 0 6px;text-align:center;color:var(--sub);font-size:16px}
+.seg{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:999px;background:var(--fill)}
+.seg button{position:relative;z-index:1;padding:8px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--sub);transition:color .2s}
+.seg button.on{color:var(--txt)}
+.seg i{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--bg);box-shadow:0 2px 8px rgba(0,0,0,.14),0 0 0 .5px rgba(0,0,0,.04);transition:transform .35s cubic-bezier(.3,1.3,.5,1)}
+.seg.reg i{transform:translateX(100%)}
+.group{border-radius:16px;background:var(--bg2);overflow:hidden}
+.group .field{background:transparent;border-radius:0;box-shadow:none}
+.group .field+.field{border-top:.5px solid var(--sep)}
+.group .field:focus{box-shadow:none}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--sub);line-height:1.4}
+.chk input{width:20px;height:20px;margin:0;accent-color:var(--sent);flex:none}
+.err{color:var(--danger);font-size:14px;text-align:center;min-height:18px}
+.foot{text-align:center;font-size:12.5px;color:var(--sub);line-height:1.7}
+.foot a{font-weight:500}
+
+/* ===== APP ===== */
+#app{position:fixed;inset:0;z-index:1;display:grid;grid-template-columns:minmax(340px,390px) 1fr}
+.side{position:relative;display:flex;flex-direction:column;min-height:0;border-right:.5px solid var(--sep)}
+.main{position:relative;display:flex;flex-direction:column;min-height:0}
+.side-h{padding:calc(14px + env(safe-area-inset-top)) 18px 6px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.side-h h2{margin:6px 0 0;font-size:34px;font-weight:700;letter-spacing:-.04em;line-height:1.1}
+.side-h .btns{display:flex;gap:10px}
+.panels{flex:1;min-height:0;position:relative}
+.panel{position:absolute;inset:0;overflow-y:auto;padding:4px 0 120px;-webkit-overflow-scrolling:touch}
+.sec{font-size:13px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:.03em;margin:18px 20px 6px}
+.row{position:relative;display:flex;align-items:center;gap:12px;padding:9px 16px 9px 8px;cursor:pointer;transition:background .15s}
+.row:active{background:var(--fill)}
+.row.sel{background:var(--fill)}
+.row .ud{width:10px;height:10px;border-radius:50%;flex:none;margin-left:2px}
+.row .ud.on{background:var(--blue)}
+.row .mid{flex:1;min-width:0;padding-bottom:9px;margin-bottom:-9px;border-bottom:.5px solid var(--sep);align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.row .l1{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.row .t{font-weight:600;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .tm{font-size:15px;color:var(--sub);white-space:nowrap}
+.row .s{font-size:15px;color:var(--sub);line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.row.plain{padding-left:16px}
+.row.plain .s{-webkit-line-clamp:1}
+.row .acts{display:flex;gap:6px;align-self:center}
+.av{width:50px;height:50px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:600;font-size:21px;color:#fff;
+  background:linear-gradient(180deg,#a5abb8,#858b98);text-shadow:0 1px 2px rgba(0,0,0,.12)}
+.av.sm{width:38px;height:38px;font-size:16px}
+.av.lg{width:56px;height:56px;font-size:24px}
+.empty{text-align:center;color:var(--sub);padding:60px 30px;font-size:16px;line-height:1.45}
+.empty b{display:block;color:var(--txt);font-size:20px;margin-bottom:6px;font-weight:700}
+.searchbar{margin:6px 16px 8px;position:relative}
+.searchbar .field{padding:10px 14px 10px 40px;border-radius:12px;font-size:17px}
+.searchbar svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--sub)}
+
+.tabbar{position:absolute;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));height:64px;border-radius:999px;display:grid;grid-template-columns:repeat(4,1fr);padding:5px;z-index:3}
+.tabbar{touch-action:none;user-select:none;-webkit-user-select:none}
+.tabbar .ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/4);border-radius:999px;pointer-events:none;
+  background:rgba(255,255,255,calc((.05 + .15*var(--lg))*var(--g-a)));box-shadow:inset 0 0 0 1px var(--g-edge),inset 0 1.5px 2px var(--g-hi),0 4px 14px rgba(0,0,0,.12);
+  backdrop-filter:blur(2px) saturate(1.6) brightness(1.12);-webkit-backdrop-filter:blur(2px) saturate(1.6) brightness(1.12);
+  transform:translateX(calc(var(--i,0) * 100%));transition:transform .5s cubic-bezier(.3,1.35,.45,1)}
+.tabbar.drag .ind{transform:translateX(var(--x)) scale(calc(1 + .22*var(--lg)),calc(1 + .26*var(--lg)));transition:transform .08s linear}
+.tabbar button{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:999px;font-size:10.5px;font-weight:600;color:var(--sub);transition:color .25s}
+.tabbar button.on{color:var(--blue)}
+.tabbar svg.i{width:23px;height:23px}
+.tabbar .badge{position:absolute;top:4px;left:calc(50% + 6px);min-width:18px;height:18px;border-radius:9px;background:var(--danger);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px}
+
+/* ===== CHAT ===== */
+.chead{position:absolute;top:0;left:0;right:0;z-index:5;padding:calc(10px + env(safe-area-inset-top)) 14px 22px;display:flex;justify-content:center;pointer-events:none}
+.chead::before{content:"";position:absolute;inset:0;z-index:-1;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:linear-gradient(color-mix(in srgb,var(--bg) 22%,transparent) 25%,transparent);-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.chead>*{pointer-events:auto}
+.back{position:absolute;left:14px;top:calc(12px + env(safe-area-inset-top));display:none}
+.cwho{display:flex;flex-direction:column;align-items:center;gap:6px}
+.cwho .pill{display:flex;align-items:center;gap:4px;padding:5px 12px 5px 14px;border-radius:999px;font-weight:600;font-size:15px}
+.cwho .pill svg{width:12px;height:12px;stroke:var(--sub);stroke-width:2.6}
+.cwho .id{font-size:11.5px;color:var(--sub);margin-top:-1px}
+.msgs{flex:1;min-height:0;overflow-y:auto;padding:150px 16px 96px;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
+.day{align-self:center;font-size:12px;color:var(--sub);margin:14px 0 8px}
+.day b{font-weight:600}
+.m{position:relative;max-width:75%;padding:8px 14px;border-radius:19px;font-size:var(--fs,17px);line-height:1.28;overflow-wrap:anywhere;white-space:pre-wrap;margin-top:2px;animation:pop .35s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.85) translateY(10px)}}
+.m.first{margin-top:8px}
+.m.me{align-self:flex-end;background:var(--sent);color:#fff;transform-origin:100% 100%}
+.m.them{align-self:flex-start;background:var(--recv);transform-origin:0 100%}
+.m.tail::before{content:"";position:absolute;bottom:0;width:18px;height:18px;background:inherit;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M0 0H12C12 7 14 12.5 18 16.5C13 18.5 8 18 0 18Z'/></svg>") center/100% 100% no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M0 0H12C12 7 14 12.5 18 16.5C13 18.5 8 18 0 18Z'/></svg>") center/100% 100% no-repeat}
+.m.me.tail::before{right:-5px}
+.m.them.tail::before{left:-5px;transform:scaleX(-1)}
+.status{align-self:flex-end;font-size:12px;color:var(--sub);font-weight:500;margin:3px 4px 0 0}
+.composer{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:26px 12px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.composer::before{content:"";position:absolute;inset:0;z-index:-1;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:linear-gradient(transparent,color-mix(in srgb,var(--bg) 22%,transparent) 70%);-webkit-mask-image:linear-gradient(transparent,#000 45%);mask-image:linear-gradient(transparent,#000 45%)}
+.cbox{pointer-events:auto;width:100%;display:flex;align-items:center;gap:6px;border-radius:999px;padding:4px;min-height:46px}
+.cbox input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-size:17px;padding:8px 0}
+.cbox input::placeholder{color:var(--sub)}
+.send{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--sent);transform:scale(0);opacity:0;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.composer.has .send{transform:scale(1);opacity:1}
+.send svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ph{flex:1;display:grid;place-items:center;text-align:center;color:var(--sub);padding:30px;font-size:16px;line-height:1.5}
+.ph b{display:block;color:var(--txt);font-size:22px;margin-bottom:4px}
+
+/* ===== REGLAGES ===== */
+.set-card{border-radius:16px;background:var(--bg2);margin:8px 16px;overflow:hidden}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;font-size:17px}
+.set-row+.set-row{border-top:.5px solid var(--sep)}
+.set-row .field{background:var(--bg);padding:9px 12px;font-size:16px}
+
+/* ===== MODAL / COOKIES / TOAST ===== */
+.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:end center;padding:0;background:rgba(0,0,0,.32);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.modal .box{width:min(640px,100%);max-height:88dvh;border-radius:28px 28px 0 0;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);animation:up .4s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(60px);opacity:0}}
+@media(min-width:700px){.modal{place-items:center;padding:16px}.modal .box{border-radius:28px}}
+.modal .bh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:.5px solid var(--sep)}
+.modal .bh h3{margin:0;font-size:19px}
+.modal .bb{padding:4px 22px calc(26px + env(safe-area-inset-bottom));overflow-y:auto;font-size:15px;line-height:1.55}
+.modal .bb h4{margin:20px 0 4px;font-size:16px}
+.modal .bb p,.modal .bb li{margin:5px 0;color:var(--txt)}
+.modal .bb ul{padding-left:20px}
+.cookie{position:fixed;z-index:15;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));width:min(560px,calc(100% - 24px));border-radius:26px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.45}
+.cookie .bt{display:flex;gap:8px;flex-wrap:wrap}
+.toast{position:fixed;z-index:30;top:calc(12px + env(safe-area-inset-top));left:50%;transform:translate(-50%,-140px);padding:11px 20px;border-radius:999px;font-size:15px;font-weight:600;transition:transform .5s cubic-bezier(.3,1.4,.5,1);max-width:calc(100% - 30px);text-align:center}
+.toast.show{transform:translate(-50%,0)}
+
+/* ===== MOBILE ===== */
+@media(max-width:820px){
+  #app{display:block}
+  .side,.main{position:absolute;inset:0;border:0}
+  .main{transform:translateX(100%);transition:transform .42s cubic-bezier(.25,.9,.3,1);z-index:4}
+  #app.chat-open .main{transform:none}
+  #app.chat-open .side{transform:translateX(-25%);opacity:0;pointer-events:none}
+  .side{transition:transform .42s cubic-bezier(.25,.9,.3,1),opacity .42s}
+  .back{display:grid}
+  .m{max-width:80%}
+}
+/* ===== v3 ===== */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:calc(.25 + var(--lg))}
+.aurora i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(70px);animation:drift 26s ease-in-out infinite alternate}
+.aurora i:nth-child(1){background:#34c759;left:-20vmax;top:-15vmax;opacity:.30}
+.aurora i:nth-child(2){background:#0a84ff;right:-22vmax;top:20vh;opacity:.32;animation-delay:-9s}
+.aurora i:nth-child(3){background:#bf5af2;left:10vw;bottom:-28vmax;opacity:.28;animation-delay:-17s}
+@keyframes drift{to{transform:translate(8vmax,-6vmax) scale(1.15)}}
+.m{-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+.m[data-ed]{margin-bottom:15px}
+.m[data-ed]::after{content:"Modifié";position:absolute;top:100%;margin-top:1px;font-size:11px;color:var(--sub);font-weight:500;white-space:nowrap}
+.m.me[data-ed]::after{right:6px}.m.them[data-ed]::after{left:6px}
+.plus{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--fill);color:var(--sub);touch-action:none}
+.plus svg{width:20px;height:20px}
+.cbox input{padding-left:4px}
+.chipbar{position:absolute;left:0;right:0;margin:auto;width:max-content;max-width:calc(100% - 28px);bottom:calc(68px + env(safe-area-inset-bottom));pointer-events:auto;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;display:flex;gap:12px;align-items:center;white-space:nowrap}
+.inst{margin:8px 16px 4px;border-radius:24px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.inst img{width:48px;height:48px;border-radius:12px;flex:none}
+.inst .tx{flex:1;min-width:0;line-height:1.25}.inst .tx b{display:block;font-size:16px}.inst .tx span{font-size:13px;color:var(--sub)}
+.inst .x{color:var(--sub);font-size:18px;padding:4px}
+.get{padding:7px 18px;border-radius:999px;font-weight:700;font-size:15px;color:var(--blue);background:var(--fill)}
+.get-pill{position:fixed;top:calc(14px + env(safe-area-inset-top));right:16px;padding:8px 18px;border-radius:999px;font-weight:700;color:var(--blue);z-index:3}
+.ov{position:fixed;inset:0;z-index:40;display:grid;place-items:end center;padding:10px;background:rgba(0,0,0,calc(.10 + .22*var(--lg)));backdrop-filter:blur(calc(2px + 10px*var(--lg)));-webkit-backdrop-filter:blur(calc(2px + 10px*var(--lg)));animation:fade .25s}
+.sh{width:min(420px,100%);border-radius:32px;padding:18px;display:flex;flex-direction:column;gap:10px;animation:up .45s cubic-bezier(.2,.9,.3,1);margin-bottom:env(safe-area-inset-bottom)}
+.sh h3{margin:0;text-align:center;font-size:17px}.sh p{margin:0;text-align:center;color:var(--sub);font-size:13.5px;line-height:1.45}
+.sh svg.i{width:18px;height:18px;vertical-align:-3px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.sr{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 2px;border-bottom:.5px solid var(--sep)}
+.sr b{font-weight:600;font-size:15px}.sr small{display:block;color:var(--sub);font-size:13px}.sr .sa{display:flex;gap:6px}
+.cm{position:fixed;z-index:3;min-width:230px;border-radius:24px;padding:6px;animation:pop .32s cubic-bezier(.3,1.5,.5,1) both;transform-origin:var(--o,50% 0)}
+.mi{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:11px 14px;border-radius:17px;font-size:17px;text-align:left;transition:background .12s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.mi.on{background:rgba(120,120,128,.28);transform:scale(1.045)}
+.mi.red{color:var(--danger)}
+.mi svg.i{width:20px;height:20px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--fill)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:24px;margin-top:-9px;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.3),inset 0 0 0 .5px rgba(0,0,0,.08)}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--fill)}
+input[type=range]::-moz-range-thumb{width:34px;height:24px;border:0;border-radius:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+/* ===== v4 ===== */
+.wall{position:fixed;inset:0;z-index:0;pointer-events:none;background:#111 url("https://res.cloudinary.com/tbmdciyv/image/upload/v1794424488/file_00000000a65881f999e07af4977a3071.png") center/cover no-repeat}
+@media(min-width:821px){.wall{background-image:url("https://res.cloudinary.com/tbmdciyv/image/upload/v1794424479/file_000000007bec820abe68fbdfca0b00ee.png")}}
+.wall::after{content:"";position:absolute;inset:0;background:var(--scrim);backdrop-filter:blur(var(--wb,0px));-webkit-backdrop-filter:blur(var(--wb,0px))}
+.sh,.cm{backdrop-filter:blur(calc(14px + 30px*var(--lg))) saturate(1.8);-webkit-backdrop-filter:blur(calc(14px + 30px*var(--lg))) saturate(1.8)}
+.av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.sw{width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+.chips input[type=color]{width:34px;height:34px;border:0;padding:0;border-radius:50%;background:none}
+[data-mode=mac] .m{border-radius:12px;padding:6px 11px}
+[data-mode=mac] .m.tail::before{display:none}
+[data-mode=mac] .tabbar{border-radius:18px}
+[data-mode=mac] .tabbar .ind,[data-mode=mac] .tabbar button{border-radius:13px}
+[data-mode=mac] .cbox,[data-mode=mac] .chipbar,[data-mode=mac] .cwho .pill{border-radius:14px}
+[data-mode=mac] .circ{border-radius:12px}
+[data-mode=mac] .sh{border-radius:18px}[data-mode=mac] .cm{border-radius:14px}[data-mode=mac] .mi{border-radius:8px}
+[data-mode=mac] .btn,[data-mode=mac] .get{border-radius:9px}
+[data-mode=mac] .inst{border-radius:16px}
+body{position:fixed;inset:0;width:100%}
+.kb .composer{padding-bottom:10px}
+/* ===== v7 : contacts, médias, hors ligne ===== */
+.row{background:rgba(255,255,255,calc(.05 + .10*var(--lg)*var(--g-a)));backdrop-filter:blur(var(--rb,13px)) saturate(1.5);-webkit-backdrop-filter:blur(var(--rb,13px)) saturate(1.5);border-bottom:1px solid var(--rowline)}
+.row .mid{border-bottom:0}
+.m.media{padding:4px;white-space:normal}
+.m.media img{display:block;width:260px;max-width:100%;height:auto;min-height:60px;border-radius:15px;background:rgba(120,120,128,.25)}
+.m.media audio{display:block;width:240px;max-width:100%;height:40px}
+.m.pend{opacity:.55}
+.ov.lb{place-items:center}.ov.lb img{max-width:96%;max-height:92%;border-radius:14px}
+.offbar{position:fixed;top:calc(8px + env(safe-area-inset-top));left:0;right:0;margin:auto;width:max-content;max-width:calc(100% - 24px);z-index:60;border-radius:999px;padding:7px 16px;font-size:13.5px;font-weight:600;pointer-events:none}
+.expd{display:block;padding:6px 10px;font-size:14px;opacity:.8}
+.ov.lb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}.ov.lb img{max-height:78%}
+.plus,.send{-webkit-tap-highlight-color:transparent}.plus:active{transform:none}
+.m.me.tail{border-bottom-right-radius:5px}.m.them.tail{border-bottom-left-radius:5px}
+.m,.m *,.cm,.cm *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.m img{-webkit-user-drag:none}
+.m[data-rx]{margin-top:16px}
+.rx{position:absolute;top:-14px;padding:2px 7px;border-radius:999px;font-size:14px;line-height:1.3;background:var(--recv);color:var(--txt);box-shadow:0 0 0 2px var(--bg),0 2px 6px rgba(0,0,0,.2);white-space:nowrap}
+.m.me .rx{left:-10px}.m.them .rx{right:-10px}.rx.mine{background:var(--blue);color:#fff}
+.emo{display:flex;gap:2px;padding:4px 4px 8px;justify-content:space-between}
+.em{font-size:26px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transition:transform .25s cubic-bezier(.3,1.6,.5,1),background .12s}
+.em.on{transform:scale(1.4);background:rgba(120,120,128,.25)}
+/* ===== connexion v8 ===== */
+#auth{background:transparent}
+.auth-orbs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.auth-orbs i{position:absolute;border-radius:50%;filter:blur(44px);opacity:.6;animation:orb 14s ease-in-out infinite alternate}
+.auth-orbs i:nth-child(1){width:46vmin;height:46vmin;background:#34c759;left:-8vmin;top:6vh}
+.auth-orbs i:nth-child(2){width:52vmin;height:52vmin;background:#0a84ff;right:-12vmin;bottom:4vh;animation-delay:-5s}
+.auth-orbs i:nth-child(3){width:36vmin;height:36vmin;background:#bf5af2;left:32vw;top:-10vmin;animation-delay:-9s}
+@keyframes orb{to{transform:translate(8vmin,-6vmin) scale(1.25)}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(34px) scale(.94)}}
+@keyframes shine{to{background-position:300% 0}}
+@keyframes float{50%{transform:translateY(-7px) rotate(-2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.auth-in{padding:30px 24px 22px;border-radius:36px;gap:14px;animation:cardIn .8s cubic-bezier(.2,.9,.3,1) backwards;transition:transform .25s}
+.auth-in.glass{backdrop-filter:blur(calc(14px + 28px*var(--lg))) saturate(1.6);-webkit-backdrop-filter:blur(calc(14px + 28px*var(--lg))) saturate(1.6)}
+.auth-in>*{animation:rise .7s cubic-bezier(.2,.9,.3,1) backwards}
+.auth-in>:nth-child(1){animation-delay:0.17s}.auth-in>:nth-child(2){animation-delay:0.24s}.auth-in>:nth-child(3){animation-delay:0.31s}.auth-in>:nth-child(4){animation-delay:0.38s}.auth-in>:nth-child(5){animation-delay:0.45s}.auth-in>:nth-child(6){animation-delay:0.52s}.auth-in>:nth-child(7){animation-delay:0.59s}.auth-in>:nth-child(8){animation-delay:0.66s}.auth-in>:nth-child(9){animation-delay:0.73s}.auth-in>:nth-child(10){animation-delay:0.80s}
+.logo-w{position:relative;display:grid;place-items:center;height:96px}
+.logo-w::before{content:"";position:absolute;width:100px;height:100px;border-radius:30px;background:conic-gradient(from 0deg,#34c759,#0a84ff,#bf5af2,#34c759);filter:blur(20px);opacity:.65;animation:spin 7s linear infinite}
+.logo-w .logo{position:relative;animation:float 5s ease-in-out infinite;box-shadow:0 0 0 5px rgba(255,255,255,.16),0 14px 34px rgba(0,0,0,.25)}
+.auth-in h1{background:linear-gradient(90deg,var(--txt),#0a84ff,#34c759,#bf5af2,var(--txt));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:rise .7s cubic-bezier(.2,.9,.3,1) .25s backwards,shine 7s linear infinite}
+.auth-in .sub{transition:opacity .3s;color:var(--txt);opacity:.75}
+.auth-in .group{background:rgba(255,255,255,calc(.08 + .1*var(--lg)*var(--g-a)));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;box-shadow:inset 0 0 0 .5px var(--g-edge);overflow:hidden}
+.auth-in .field:focus{box-shadow:inset 0 0 0 1.5px rgba(10,132,255,.7)}
+.auth-in .btn.big{background:linear-gradient(120deg,#34c759,#0a84ff,#bf5af2,#34c759);background-size:300% 100%;box-shadow:0 12px 30px rgba(10,132,255,.4);animation:rise .7s cubic-bezier(.2,.9,.3,1) .85s backwards,shine 8s linear infinite}
+.m{touch-action:pan-y;transition:box-shadow .25s}
+.m.hl{box-shadow:0 0 0 3px rgba(10,132,255,.55)}
+.swi{position:absolute;top:50%;margin-top:-12px;width:24px;height:24px;color:var(--sub);pointer-events:none}
+.swi svg{width:24px;height:24px}
+.qt{border-left:3px solid rgba(255,255,255,.75);padding:2px 8px;margin:0 0 5px;border-radius:4px;background:rgba(255,255,255,.18);font-size:.82em;line-height:1.25;display:flex;flex-direction:column;white-space:nowrap;overflow:hidden;max-width:100%;cursor:pointer}
+.qt b{font-weight:700}.qt span{overflow:hidden;text-overflow:ellipsis;opacity:.92}
+.m.them .qt{border-left-color:var(--blue);background:rgba(120,120,128,.18)}
+.rpbar{position:absolute;left:14px;right:14px;bottom:calc(68px + env(safe-area-inset-bottom));pointer-events:auto;border-radius:20px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.rpt{flex:1;min-width:0;border-left:3px solid var(--blue);padding-left:8px;display:flex;flex-direction:column;font-size:13.5px}
+.rpt b{color:var(--blue);font-size:13px}.rpt span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--sub)}
+/* ===== appels ===== */
+.callbtns{position:absolute;right:14px;top:calc(12px + env(safe-area-inset-top));display:flex;gap:8px;pointer-events:auto}
+#call{position:fixed;inset:0;z-index:70;background:#000;display:grid;overflow:hidden}
+#call.voice{background:rgba(0,0,0,.4);backdrop-filter:blur(34px) saturate(1.4);-webkit-backdrop-filter:blur(34px) saturate(1.4)}
+#call.voice #rv{display:none}
+#rv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.ctop{position:absolute;top:calc(14px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);padding:8px 18px;border-radius:999px;display:flex;flex-direction:column;align-items:center;gap:1px;color:#fff;min-width:140px}
+.ctop b{font-size:16px}.ctop span{font-size:13px;opacity:.85}
+.cav{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%)}
+.cav .av{width:128px;height:128px;font-size:52px;animation:pulse 2s ease-in-out infinite}
+#call:not(.voice) .cav{display:none}
+@keyframes pulse{50%{box-shadow:0 0 0 22px rgba(255,255,255,.12)}}
+#lv{position:absolute;right:14px;top:calc(76px + env(safe-area-inset-top));width:108px;height:148px;object-fit:cover;border-radius:18px;background:#222;transform:scaleX(-1);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+#call.voice #lv,#call.novid #lv{display:none}
+.cbar{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:16px;padding:12px 16px;border-radius:999px}
+.cbar button{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.2);color:#fff}
+.cbar button.off{background:#fff;color:#000}
+.cbar button.red{background:#ff3b30;color:#fff}.cbar button.red svg{transform:rotate(135deg)}
+#call.voice #cCam,#call.voice #cFlip{display:none}
+#inc{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:rgba(0,0,0,.35);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);animation:fade .25s}
+#inc .box{width:min(320px,calc(100% - 32px));border-radius:36px;padding:28px 20px 22px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+#inc .av{width:96px;height:96px;font-size:40px;animation:pulse 2s ease-in-out infinite}
+#inc b{font-size:22px;margin-top:10px}#inc span{color:var(--sub);font-size:15px}
+#inc .row2{display:flex;gap:44px;margin-top:22px}
+#inc .row2 button{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:#fff}
+#inc .no{background:#ff3b30}#inc .no svg{transform:rotate(135deg)}#inc .yes{background:#34c759}
+#inc .row2 svg{width:28px;height:28px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<noscript><main style="font-family:sans-serif;max-width:560px;margin:40px auto;padding:0 20px;line-height:1.5"><h1>TalcoExchange</h1><p>TalcoExchange (Talco Exchange, Echange Talco) est la messagerie instantanée du GroupeTalco : messages, photos, messages vocaux, appels audio et vidéo, notifications. Compte TalcoITN / ITN 3.</p><p>Activez JavaScript pour vous connecter.</p></main></noscript>
+<div class="wall"></div>
+
+<!-- AUTH -->
+<section id="auth">
+  <div class="auth-orbs"><i></i><i></i><i></i></div>
+  <button class="hidden" id="instAuth" data-inst aria-hidden="true" tabindex="-1"></button>
+  <div class="logo-w"><img class="logo" src="icon-192.png" alt=""></div>
+</section>
+
+<!-- APP -->
+<main id="app" class="hidden">
+  <aside class="side">
+    <div class="side-h">
+      <h2 id="title">Messages</h2>
+      <div class="btns">
+        <button class="glass circ" id="compose" aria-label="Nouveau message"><svg class="i" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+        <button class="glass circ" id="meAv" aria-label="Mon profil" style="padding:0"></button>
+      </div>
+    </div>
+    <div class="inst glass hidden" id="inst"><img src="icon-192.png" alt=""><div class="tx"><b>TalcoExchange</b><span>Installer l’application</span></div><button class="get" data-inst>Installer</button><button class="x" data-instx aria-label="Fermer">✕</button></div>
+    <div class="panels">
+      <div class="panel" id="p-chats"></div>
+      <div class="panel hidden" id="p-search">
+        <div class="searchbar">
+          <svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="field" id="q" placeholder="Rechercher un identifiant" autocapitalize="none" autocorrect="off" spellcheck="false">
+        </div>
+        <div id="results"></div>
+      </div>
+      <div class="panel hidden" id="p-friends"></div>
+      <div class="panel hidden" id="p-settings"></div>
+    </div>
+    <nav class="tabbar glass" id="tabbar">
+      <i class="ind"></i>
+      <button data-tab="chats" class="on"><svg class="i" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Messages</button>
+      <button data-tab="search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Rechercher</button>
+      <button data-tab="friends"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.6 3.2-5.5 6.5-5.5s6 1.9 6.5 5.5"/><path d="M17 5.5a3 3 0 0 1 0 5.5M18.5 14.8c1.8.6 3 2.2 3.3 5"/></svg>Amis<span class="badge hidden" id="reqBadge"></span></button>
+      <button data-tab="settings"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Réglages</button>
+    </nav>
   </aside>
-  <main id="view"></main>
- </div>
+
+  <section class="main">
+    <div class="ph" id="noChat"><div><b>TalcoExchange</b>Sélectionnez une discussion<br>ou ajoutez un ami pour commencer.</div></div>
+    <div id="chat" class="hidden" style="display:flex;flex-direction:column;flex:1;min-height:0;position:relative">
+      <div class="chead">
+        <button class="back glass circ" id="back" aria-label="Retour"><svg class="i" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
+        <div class="cwho">
+          <div id="chAv"></div>
+          <div class="glass pill"><span id="chName"></span><svg class="i" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></div>
+          <div class="id" id="chId"></div>
+        </div>
+        <div class="callbtns"><button class="glass circ" id="callA" aria-label="Appel vocal"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></button><button class="glass circ" id="callV" aria-label="Appel vidéo"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></svg></button></div>
+      </div>
+      <div class="msgs" id="msgs"></div>
+      <form class="composer" id="composer" autocomplete="off">
+        <div class="chipbar glass hidden" id="edBar"><span>Modifier le message</span><button type="button" id="edX" aria-label="Annuler">✕</button></div>
+        <button class="chipbar glass hidden" type="button" id="schedBar"></button>
+        <div class="rpbar glass hidden" id="rpBar"><div class="rpt"><b id="rpWho"></b><span id="rpTx"></span></div><button type="button" id="rpX" aria-label="Annuler la réponse">✕</button></div>
+        <div class="cbox glass">
+          <button class="plus" type="button" id="plus" aria-label="Plus"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <input id="msgIn" placeholder="Message texte" maxlength="1000" enterkeyhint="send" autocomplete="off">
+          <button class="send" type="submit" aria-label="Envoyer"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- LEGAL -->
+<div class="modal hidden" id="legal">
+  <div class="box">
+    <div class="bh"><h3 id="legalT"></h3><button class="btn soft sm" id="legalX">Fermer</button></div>
+    <div class="bb" id="legalB"></div>
+  </div>
 </div>
-<button id="fab" class="fab" aria-label="Créer">＋</button>
-<nav class="dock" id="dock">
- <span class="pill"></span>
- <button data-v="month"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Mois</button>
- <button data-v="week"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M9 10v11M15 10v11M3 10h18"/></svg>Semaine</button>
- <button data-v="day"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M3 10h18"/><circle cx="12" cy="15.5" r="2.4"/></svg>Jour</button>
- <button data-v="agenda"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Agenda</button>
- <button data-v="tasks"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>Tâches</button>
-</nav>
-<dialog id="dlg" class="modal"><form id="f" method="dialog">
- <div class="tabs"><button type="button" data-t="ev" class="on">Événement</button><button type="button" data-t="tk">Tâche</button></div>
- <input id="fTitle" placeholder="Ajouter un titre" required>
- <div class="row"><label>Date<input type="date" id="fDate" required></label><label>Début<input type="time" id="fStart" value="09:00"></label><label class="onlyEv">Fin<input type="time" id="fEnd" value="10:00"></label></div>
- <label class="chk onlyEv"><input type="checkbox" id="fAll">Toute la journée</label>
- <div class="row onlyEv"><label>Répétition<select id="fRep"><option value="none">Ne se répète pas</option><option value="daily">Tous les jours</option><option value="weekly">Toutes les semaines</option><option value="monthly">Tous les mois</option><option value="yearly">Tous les ans</option></select></label>
- <label>Notification<select id="fNot"><option value="-1">Aucune</option><option value="0">À l’heure</option><option value="5">5 min avant</option><option value="10" selected>10 min avant</option><option value="30">30 min avant</option><option value="60">1 h avant</option><option value="1440">1 jour avant</option></select></label></div>
- <input id="fLoc" class="onlyEv" placeholder="Lieu">
- <textarea id="fDesc" class="onlyEv" placeholder="Description" rows="2"></textarea>
- <div class="colors onlyEv" id="fCol"></div>
- <div class="act"><button type="button" id="del" class="danger">Supprimer</button><button type="button" id="cancel">Annuler</button><button type="submit" class="primary">Enregistrer</button></div>
-</form></dialog>
-<div id="toast" class="toast"></div>
-<script src="app.js"></script>
-</body></html>
+
+<!-- COOKIES -->
+<div class="cookie glass hidden" id="cookie">
+  <div><b>Cookies &amp; stockage</b><br>TalcoExchange utilise un stockage local essentiel (session, préférences) et, avec votre accord, des mesures d’audience anonymes (Firebase Analytics). <a data-legal="priv">En savoir plus</a></div>
+  <div class="bt"><button class="btn sm" id="ckAll">Tout accepter</button><button class="btn soft sm" id="ckEss">Essentiels uniquement</button></div>
+</div>
+<div class="toast glass" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getDatabase, ref, onValue, onChildAdded, onChildChanged, onChildRemoved, runTransaction, push, set, update, remove, get, query, orderByChild, startAt, endAt, limitToFirst, limitToLast, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
+/* Hors de la page de connexion : retour à la page de connexion. */
+{ let ok = window.parent !== window; try { const ao = location.ancestorOrigins; if (ok && ao && ao.length) ok = ao[0] === "https://natlacaxi.github.io"; } catch (e) {}
+  if (!ok) { location.replace("https://natlacaxi.github.io/exchange-3/"); throw new Error("hors cadre"); } }
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyALu9n3ksX-0mN4u8reRBpFkWAUsVsGswA",
+  authDomain: "itn-3-1b09f.firebaseapp.com",
+  databaseURL: "https://itn-3-1b09f-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "itn-3-1b09f",
+  storageBucket: "itn-3-1b09f.firebasestorage.app",
+  messagingSenderId: "105336373207",
+  appId: "1:105336373207:web:238065cbea49453d4d1592",
+  measurementId: "G-3NGEQMDTWN"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+/* ---------- Cadre : cette interface ne s’ouvre que dans la page de connexion ---------- */
+const PARENT = "https://natlacaxi.github.io";
+const LOGIN_URL = PARENT + "/exchange-3/";
+const post = m => { try { parent.postMessage(m, PARENT); } catch (e) {} };
+
+/* ---------- utils ---------- */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const EMAIL_DOMAIN = "@talcoexchange.app";
+const ID_RE = /^[a-z0-9_.-]{3,20}$/;
+const COLORS = ["#ff6b6b", "#ff9f43", "#feca57", "#1dd1a1", "#10ac84", "#54a0ff", "#5f27cd", "#ee5a9e", "#00cec9", "#6c5ce7"];
+const colorOf = s => { let h = 0; for (const c of String(s)) h = (h * 31 + c.charCodeAt(0)) >>> 0; return COLORS[h % COLORS.length]; };
+const avatar = (u, cls = "") => `<div class="av ${cls}">${u.photo ? `<img src="${esc(u.photo)}" alt="">` : esc((u.name || u.id || "?")[0].toUpperCase())}</div>`;
+const chatId = (a, b) => [a, b].sort().join("_");
+const fmtTime = t => t ? new Date(t).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) : "";
+const fmtDay = t => {
+  const d = new Date(t), n = new Date();
+  const same = (a, b) => a.toDateString() === b.toDateString();
+  const y = new Date(n); y.setDate(n.getDate() - 1);
+  if (same(d, n)) return "Aujourd’hui"; if (same(d, y)) return "Hier";
+  return d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+};
+const fmtShort = t => {
+  if (!t) return ""; const d = new Date(t), n = new Date();
+  return d.toDateString() === n.toDateString() ? fmtTime(t) : d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" });
+};
+let toastT;
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 3200);
+}
+const authErr = e => {
+  const c = e?.code || "";
+  if (c.includes("invalid-credential") || c.includes("wrong-password") || c.includes("user-not-found") || c.includes("invalid-login")) return "Identifiant ou mot de passe incorrect.";
+  if (c.includes("email-already-in-use")) return "Cet identifiant est déjà pris.";
+  if (c.includes("weak-password")) return "Mot de passe trop court (6 caractères minimum).";
+  if (c.includes("network")) return "Problème de connexion réseau.";
+  if (c.includes("too-many")) return "Trop de tentatives, réessayez plus tard.";
+  if (c.includes("operation-not-allowed")) return "Connexion e-mail/mot de passe non activée dans Firebase.";
+  return "Erreur : " + (e?.message || c || "inconnue");
+};
+
+/* ---------- cookies / analytics ---------- */
+async function startAnalytics() {
+  try {
+    const m = await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js");
+    if (await m.isSupported()) m.getAnalytics(app);
+  } catch (e) { /* ignoré */ }
+}
+const consent = () => localStorage.getItem("tx_cookies");
+function setConsent(v) { localStorage.setItem("tx_cookies", v); $("#cookie").classList.add("hidden"); if (v === "all") startAnalytics(); }
+if (!consent()) $("#cookie").classList.remove("hidden"); else if (consent() === "all") startAnalytics();
+$("#ckAll").onclick = () => setConsent("all");
+$("#ckEss").onclick = () => setConsent("essential");
+
+/* ---------- legal ---------- */
+const LEGAL_DATE = "13 novembre 2026";
+const LEGAL = {
+  cgu: ["Conditions d’utilisation", `
+<p><i>Dernière mise à jour : ${LEGAL_DATE}</i></p>
+<h4>1. Objet</h4><p>TalcoExchange (le « Service ») est un réseau social de messagerie édité par le <b>GroupeTalco</b> (TalcoAdministration, © TalcoInc2026). Il permet de créer un compte, de rechercher d’autres membres, de les ajouter en ami et d’échanger des messages en temps réel.</p>
+<h4>2. Compte</h4><p>Vous choisissez un identifiant unique et un mot de passe. Vous êtes responsable de la confidentialité de vos accès et de toute activité réalisée depuis votre compte. Les informations fournies doivent être exactes. Le Service est réservé aux personnes âgées d’au moins 13 ans ; les mineurs doivent disposer de l’accord de leur représentant légal.</p>
+<h4>3. Règles de conduite</h4><ul><li>Respecter les autres membres : pas de harcèlement, menaces, haine, discrimination.</li><li>Ne pas publier de contenu illégal, trompeur, pornographique ou portant atteinte aux droits de tiers.</li><li>Ne pas usurper l’identité d’autrui, ni envoyer de spam ou de contenus malveillants.</li><li>Ne pas tenter de perturber, contourner ou compromettre la sécurité du Service.</li></ul>
+<h4>4. Contenus</h4><p>Vous restez propriétaire des messages que vous envoyez. Vous accordez au GroupeTalco le droit technique de les stocker et de les transmettre à leurs destinataires pour faire fonctionner le Service. Vous êtes seul responsable de leur contenu.</p>
+<h4>5. Modération et suspension</h4><p>Le GroupeTalco peut suspendre ou supprimer tout compte ou contenu qui enfreint les présentes conditions, sans préavis en cas de manquement grave.</p>
+<h4>6. Disponibilité et responsabilité</h4><p>Le Service est fourni « en l’état », sans garantie de disponibilité continue. Dans les limites autorisées par la loi, le GroupeTalco ne saurait être tenu responsable des dommages indirects, de la perte de données ou des échanges entre membres.</p>
+<h4>7. Évolution</h4><p>Ces conditions peuvent évoluer ; la poursuite de l’utilisation vaut acceptation de la nouvelle version.</p>
+<h4>8. Contact</h4><p>TalcoAdministration — <a class="link" href="mailto:talcoitn@gmail.com">talcoitn@gmail.com</a></p>`],
+  priv: ["Confidentialité & cookies", `
+<p><i>Dernière mise à jour : ${LEGAL_DATE}</i></p>
+<h4>1. Responsable du traitement</h4><p>GroupeTalco — TalcoAdministration. Contact : <a class="link" href="mailto:talcoitn@gmail.com">talcoitn@gmail.com</a>.</p>
+<h4>2. Données collectées</h4><ul><li><b>Compte</b> : identifiant, nom affiché, mot de passe (stocké de façon sécurisée par Firebase Authentication, jamais lisible par nous).</li><li><b>Réseau</b> : liste d’amis et demandes d’ajout.</li><li><b>Messages</b> : contenu, expéditeur, date et heure.</li><li><b>Technique</b> : données de connexion et journaux nécessaires à la sécurité du Service.</li></ul>
+<h4>3. Finalités et bases légales</h4><p>Fournir le Service (exécution du contrat), assurer sa sécurité (intérêt légitime), mesurer l’audience de manière anonyme (consentement).</p>
+<h4>4. Hébergement et sous-traitants</h4><p>Les données sont hébergées par Google Firebase (Authentication, Realtime Database, Analytics). Le Service est servi via GitHub Pages. Des transferts hors Union européenne peuvent avoir lieu, encadrés par les garanties prévues par le RGPD.</p>
+<h4>5. Cookies et stockage local</h4><ul><li><b>Essentiels</b> (toujours actifs) : maintien de votre session de connexion, mémorisation de votre choix de cookies, marqueurs de lecture des messages, cache hors-ligne de l’application. Ils ne nécessitent pas de consentement.</li><li><b>Mesure d’audience</b> (facultatif) : Firebase Analytics, uniquement si vous cliquez sur « Tout accepter ». Vous pouvez changer d’avis à tout moment dans Réglages → Cookies.</li></ul>
+<h4>6. Durée de conservation</h4><p>Les données sont conservées tant que votre compte est actif, puis supprimées dans un délai raisonnable après sa fermeture.</p>
+<h4>7. Vos droits</h4><p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, d’opposition, de limitation et de portabilité. Pour les exercer, écrivez à <a class="link" href="mailto:talcoitn@gmail.com">talcoitn@gmail.com</a>. Vous pouvez aussi saisir la CNIL (cnil.fr).</p>
+<h4>8. Sécurité</h4><p>Les échanges sont chiffrés en transit (HTTPS) et l’accès aux données est restreint par des règles de sécurité Firebase.</p>`],
+  legal: ["Mentions légales", `
+<h4>Éditeur</h4><p><b>GroupeTalco</b> — TalcoAdministration<br>© TalcoInc2026 — Tous droits réservés.<br>Contact : <a class="link" href="mailto:talcoitn@gmail.com">talcoitn@gmail.com</a></p>
+<h4>Hébergement</h4><p>Application : GitHub Pages (GitHub, Inc.). Données : Google Firebase (Google Cloud, région Europe-Ouest).</p>
+<h4>Propriété intellectuelle</h4><p>Le nom TalcoExchange, son interface et son code sont la propriété du GroupeTalco. Toute reproduction non autorisée est interdite.</p>`]
+};
+function openLegal(k) {
+  $("#legalT").textContent = LEGAL[k][0]; $("#legalB").innerHTML = LEGAL[k][1]; $("#legalB").scrollTop = 0;
+  $("#legal").classList.remove("hidden");
+}
+$("#legalX").onclick = () => $("#legal").classList.add("hidden");
+$("#legal").addEventListener("click", e => { if (e.target.id === "legal") $("#legal").classList.add("hidden"); });
+document.addEventListener("click", e => { const a = e.target.closest("[data-legal]"); if (a) { e.preventDefault(); openLegal(a.dataset.legal); } });
+
+/* ---------- état ---------- */
+let me = null;            // {uid,id,name}
+let friends = {}, reqIn = {}, chats = {};
+let active = null;        // uid de l'interlocuteur
+let msgUnsub = null;      // pour invalider le listener de messages
+let msgToken = 0;
+let unsubs = [];
+let registering = false;
+let curTab = "chats";
+const userCache = new Map();
+const saveLS = (p, v) => { try { localStorage.setItem(p + me.uid, JSON.stringify(v)); } catch (e) {} };
+const ucGet = () => { try { return JSON.parse(localStorage.getItem("tx_uc") || "{}"); } catch (e) { return {}; } };
+const getUser = uid => {
+  if (!userCache.has(uid)) userCache.set(uid, get(ref(db, "users/" + uid)).then(s => {
+    if (!s.exists()) return { uid, id: "inconnu", name: "Utilisateur" };
+    const v = { uid, ...s.val() }; try { const c = ucGet(); c[uid] = v; localStorage.setItem("tx_uc", JSON.stringify(c)); } catch (e) {} return v;
+  }).catch(() => { userCache.delete(uid); return ucGet()[uid] || { uid, id: "?", name: "?" }; }));
+  return userCache.get(uid);
+};
+const readKey = u => `tx_r_${me.uid}_${u}`;
+const readTs = u => Number(localStorage.getItem(readKey(u)) || 0);
+const markRead = u => localStorage.setItem(readKey(u), String(Math.max(Date.now(), chats[u]?.ts || 0)));
+
+/* ---------- liaison avec la page de connexion ---------- */
+addEventListener("message", async e => {
+  if (e.origin !== PARENT || e.source !== parent) return;
+  const m = e.data || {};
+  if (m.type === "exchange-login" && typeof m.email === "string" && typeof m.password === "string") {
+    try { await signInWithEmailAndPassword(auth, m.email, m.password); }   // onAuthStateChanged prend le relais
+    catch (x) { post({ type: "exchange-login-error", message: authErr(x) }); }
+  } else if (m.type === "exchange-install-ready") {
+    dip = { prompt: () => post({ type: "exchange-install" }), userChoice: Promise.resolve() }; showInst();
+  } else if (m.type === "exchange-installed") { dip = null; showInst(); }
+});
+
+/* ---------- cycle de vie ---------- */
+onAuthStateChanged(auth, async u => {
+  if (!u) { teardown(); $("#app").classList.add("hidden"); $("#auth").classList.remove("hidden"); post({ type: "exchange-need-login" }); return; }
+  await boot(u);
+});
+
+async function boot(u) {
+  let prof = null;
+  const pk = "tx_prof_" + u.uid;
+  for (let i = 0; i < 5 && !prof && navigator.onLine; i++) {
+    try { const s = await get(ref(db, "users/" + u.uid)); if (s.exists()) { prof = s.val(); try { localStorage.setItem(pk, JSON.stringify(prof)); } catch (e) {} } } catch (e) { /* retry */ }
+    if (!prof) await new Promise(r => setTimeout(r, 500));
+  }
+  if (!prof) { try { prof = JSON.parse(localStorage.getItem(pk) || "null"); } catch (e) {} }
+  if (!prof) { toast("Profil introuvable, reconnexion…"); await signOut(auth); return; }
+  teardown();
+  me = { uid: u.uid, id: prof.id, name: prof.name, photo: prof.photo };
+  userCache.set(me.uid, Promise.resolve({ uid: me.uid, ...prof }));
+  $("#auth").classList.add("hidden"); $("#app").classList.remove("hidden"); post({ type: "exchange-ready", id: me.id });
+  try { friends = JSON.parse(localStorage.getItem("tx_fr_" + me.uid) || "{}"); chats = JSON.parse(localStorage.getItem("tx_ch_" + me.uid) || "{}"); } catch (e) {}
+  renderMe(); setTab("chats");
+  unsubs.push(
+    onValue(ref(db, "friends/" + me.uid), s => { friends = s.val() || {}; saveLS("tx_fr_", friends); renderFriends(); if (curTab === "search") renderResults(); }),
+    onValue(ref(db, "requests/" + me.uid), s => { reqIn = s.val() || {}; renderFriends(); updateBadge(); if (curTab === "search") renderResults(); }),
+    onValue(ref(db, "userChats/" + me.uid), s => { chats = s.val() || {}; saveLS("tx_ch_", chats); notifyNew(chats); renderChats(); if (active && chats[active]) markRead(active); },
+      err => toast("Accès refusé : vérifiez les règles de la base."))
+  );
+  regPush(); unsubs.push(onValue(ref(db, "inbox/" + me.uid), sn => onInbox(sn.val()))); unsubs.push(onValue(ref(db, "incoming/" + me.uid), sn => onIncoming(sn.val()))); { let offT; unsubs.push(onValue(ref(db, ".info/connected"), sn => { clearTimeout(offT); if (sn.val()) $("#offBar").classList.add("hidden"); else offT = setTimeout(() => $("#offBar").classList.remove("hidden"), 3000); })); }
+  unsubs.push(onValue(ref(db, "scheduled/" + me.uid), s => { sched = s.val() || {}; schedBar(); flush(); }, () => {}), (() => { const t = setInterval(flush, 4000); return () => clearInterval(t); })());
+}
+function teardown() {
+  unsubs.forEach(f => { try { f(); } catch (e) {} }); unsubs = [];
+  if (msgUnsub) { msgUnsub(); msgUnsub = null; }
+  if (call) endCall(false); hideInc(); msgToken++; M.clear(); sched = {}; seen = null; inboxT = null; me = null; friends = {}; reqIn = {}; chats = {}; active = null; lastResults = [];
+  $("#app").classList.remove("chat-open"); $("#chat").classList.add("hidden"); $("#noChat").classList.remove("hidden");
+  ["#p-chats", "#p-friends", "#p-settings", "#results"].forEach(s => $(s).innerHTML = "");
+  $("#q").value = "";
+}
+
+/* ---------- navigation ---------- */
+const TITLES = { chats: "Messages", search: "Rechercher", friends: "Amis", settings: "Réglages" };
+function setTab(t) {
+  curTab = t;
+  $$(".tabbar button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
+  $("#tabbar").style.setProperty("--i", ["chats", "search", "friends", "settings"].indexOf(t));
+  $$(".panel").forEach(p => p.classList.toggle("hidden", p.id !== "p-" + t));
+  $("#title").textContent = TITLES[t];
+  if (t === "settings") { renderSettings(); showInst(); }
+  if (t === "search") { renderResults(); }
+}
+$$(".tabbar button").forEach(b => b.onclick = () => setTab(b.dataset.tab));
+$("#compose").onclick = () => { setTab("search"); setTimeout(() => $("#q").focus(), 60); };
+$("#meAv").onclick = () => setTab("settings");
+function renderMe() { $("#meAv").innerHTML = avatar(me, "sm"); }
+function updateBadge() {
+  const n = Object.keys(reqIn).length, b = $("#reqBadge");
+  b.textContent = n; b.classList.toggle("hidden", !n);
+}
+
+/* ---------- liste des discussions ---------- */
+let chatsTok = 0;
+async function renderChats() {
+  const tok = ++chatsTok;
+  const items = Object.entries(chats).map(([uid, c]) => ({ uid, ...c })).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  const users = await Promise.all(items.map(i => getUser(i.uid)));
+  if (tok !== chatsTok || !me) return;
+  $("#p-chats").innerHTML = items.length ? items.map((i, k) => {
+    const u = users[k], unread = i.from !== me.uid && (i.ts || 0) > readTs(i.uid) && i.uid !== active;
+    return `<div class="row ${i.uid === active ? "sel" : ""}" data-open="${esc(i.uid)}"><span class="ud ${unread ? "on" : ""}"></span>${avatar(u)}
+      <div class="mid"><div class="l1"><span class="t">${esc(u.name)}</span><span class="tm">${fmtShort(i.ts)} ›</span></div><div class="s">${i.from === me.uid ? "Vous : " : ""}${esc(i.last)}</div></div></div>`;
+  }).join("") : `<div class="empty"><b>Aucune discussion</b>Allez dans <b style="display:inline;font-size:inherit">Rechercher</b> pour trouver et ajouter des amis.</div>`;
+}
+
+/* ---------- chat ---------- */
+async function openChat(uid) {
+  if (!me || !friends[uid] && !chats[uid]) { if (!friends[uid]) return toast("Ajoutez d’abord cette personne en ami."); }
+  active = uid;
+  const token = ++msgToken;
+  if (msgUnsub) { msgUnsub(); msgUnsub = null; }
+  const u = await getUser(uid);
+  if (token !== msgToken) return;
+  $("#chAv").innerHTML = avatar(u, "lg"); $("#chName").textContent = u.name; $("#chId").textContent = "@" + u.id;
+  $("#msgs").innerHTML = ""; lastMsgTs = 0; lastFrom = null; lastEl = null; M.clear(); HID = hidSet(); endEdit(); clearReply();
+  $("#noChat").classList.add("hidden"); $("#chat").classList.remove("hidden");
+  $("#app").classList.add("chat-open"); pcApply();
+  markRead(uid); renderChats(); clearNotifs(uid);
+  try { JSON.parse(localStorage.getItem(mcKey()) || "[]").forEach(m => addMsg(m, 1)); } catch (e) {}
+  obGet().filter(e => e.to === uid).forEach(e => addMsg({ k: e.key, from: me.uid, text: e.text, ts: e.at, pend: 1, kind: e.kind, mime: e.mime, b64: e.b64, dur: e.dur, w: e.w, h: e.h, reply: e.reply }, 1));
+  const q = query(ref(db, `chats/${chatId(me.uid, uid)}/messages`), limitToLast(150));
+  const u1 = onChildAdded(q, s => {
+    if (token !== msgToken) return;
+    const v0 = { ...s.val(), k: s.key }; addMsg(v0); sweep(v0, chatId(me.uid, uid));
+    if (document.visibilityState === "visible") markRead(uid);
+  }, () => toast("Impossible de lire les messages."));
+  const u2 = onChildChanged(q, s => {
+    if (token !== msgToken) return;
+    const v = { ...s.val(), k: s.key }; M.set(s.key, v);
+    const el = $(`#msgs [data-k="${s.key}"]`);
+    if (el) { if (!v.kind) el.textContent = v.text; renderRx(el, v); el.classList.remove("pend"); if (v.edited) el.dataset.ed = 1; else delete el.dataset.ed; }
+  });
+  const u3 = onChildRemoved(q, s => { if (token !== msgToken) return; M.delete(s.key); rerender(); });
+  msgUnsub = () => { u1(); u2(); u3(); };
+  schedBar();
+  if (matchMedia("(min-width:821px)").matches) $("#msgIn").focus();
+}
+let lastMsgTs = 0, lastFrom = null, lastEl = null;
+function addMsg(m, quiet) {
+  M.set(m.k, m); if (HID.has(m.k)) return;
+  const ex = $(`#msgs [data-k="${m.k}"]`);
+  if (ex) { ex.classList.remove("pend"); if (!m.kind) ex.textContent = m.text; renderRx(ex, m); saveCache(); return; }
+  const box = $("#msgs"), near = box.scrollHeight - box.scrollTop - box.clientHeight < 160;
+  const ts = typeof m.ts === "number" ? m.ts : Date.now();
+  if (!lastMsgTs || ts - lastMsgTs > 3600e3 || new Date(ts).toDateString() !== new Date(lastMsgTs).toDateString()) {
+    box.insertAdjacentHTML("beforeend", `<div class="day"><b>${esc(fmtDay(ts))}</b> ${fmtTime(ts)}</div>`); lastFrom = null; lastEl = null;
+  }
+  const mine = m.from === me.uid;
+  box.querySelector(".status")?.remove();
+  
+  const el = document.createElement("div");
+  el.className = `m ${mine ? "me" : "them"} tail ${lastFrom !== m.from ? "first" : ""}`;
+  if (m.kind) initMedia(el, m); else el.textContent = m.text; renderRx(el, m); if (m.pend) el.classList.add("pend"); el.title = fmtTime(ts); el.dataset.k = m.k; if (m.edited) el.dataset.ed = 1; if (quiet) el.style.animation = "none";
+  box.appendChild(el);
+  if (mine) box.insertAdjacentHTML("beforeend", `<div class="status">Distribué</div>`);
+  lastMsgTs = ts; lastFrom = m.from; lastEl = el;
+  if (near || mine) box.scrollTop = box.scrollHeight;
+  saveCache();
+}
+$("#msgIn").addEventListener("input", () => $("#composer").classList.toggle("has", !!$("#msgIn").value.trim()));
+$("#composer").addEventListener("submit", async e => {
+  e.preventDefault();
+  const inp = $("#msgIn"), text = inp.value.trim();
+  if (!active || !me) return;
+  if (editing) { const k = editing; endEdit(); if (!text || text === M.get(k)?.text) return; try { await editMsg(k, text); } catch (x) { toast("Modification impossible."); } return; }
+  if (!text) return;
+  inp.value = ""; $("#composer").classList.remove("has");
+  try { await sendMsg(active, text, undefined, takeReply()); } catch (x) { toast("Message non envoyé."); inp.value = text; $("#composer").classList.add("has"); }
+});
+$("#back").onclick = () => {
+  $("#app").classList.remove("chat-open"); active = null; msgToken++; endEdit(); clearReply();
+  if (msgUnsub) { msgUnsub(); msgUnsub = null; } renderChats();
+};
+
+/* ---------- recherche ---------- */
+let lastResults = [], searchTok = 0, debounce;
+$("#q").addEventListener("input", () => { clearTimeout(debounce); debounce = setTimeout(doSearch, 280); });
+async function doSearch() {
+  const q = $("#q").value.trim().toLowerCase().replace(/^@/, ""), tok = ++searchTok;
+  if (q.length < 2) { lastResults = []; return renderResults(); }
+  try {
+    const s = await get(query(ref(db, "users"), orderByChild("idLower"), startAt(q), endAt(q + "\uf8ff"), limitToFirst(20)));
+    if (tok !== searchTok) return;
+    lastResults = []; s.forEach(c => { if (c.key !== me.uid) lastResults.push({ uid: c.key, ...c.val() }); });
+  } catch (e) { lastResults = []; toast("Recherche impossible."); }
+  renderResults();
+}
+let outgoing = new Set();
+async function renderResults() {
+  const box = $("#results"), q = $("#q").value.trim();
+  if (q.length < 2) { box.innerHTML = `<div class="empty"><b>Trouvez vos amis</b>Tapez au moins 2 caractères d’un identifiant.</div>`; return; }
+  if (!lastResults.length) { box.innerHTML = `<div class="empty"><b>Aucun résultat</b>Vérifiez l’identifiant.</div>`; return; }
+  const list = lastResults;
+  await Promise.all(list.map(async u => {
+    if (friends[u.uid] || reqIn[u.uid]) return;
+    try { (await get(ref(db, `requests/${u.uid}/${me.uid}`))).exists() ? outgoing.add(u.uid) : outgoing.delete(u.uid); } catch (e) {}
+  }));
+  if (list !== lastResults) return;
+  box.innerHTML = list.map(u => {
+    let act;
+    if (friends[u.uid]) act = `<button class="btn sm" data-open="${esc(u.uid)}">Message</button>`;
+    else if (reqIn[u.uid]) act = `<button class="btn sm" data-accept="${esc(u.uid)}">Accepter</button>`;
+    else if (outgoing.has(u.uid)) act = `<button class="btn soft sm" data-cancel="${esc(u.uid)}">Envoyée ✓</button>`;
+    else act = `<button class="btn sm" data-add="${esc(u.uid)}">Ajouter</button>`;
+    return `<div class="row plain" style="cursor:default">${avatar(u)}<div class="mid"><div class="t">${esc(u.name)}</div><div class="s">@${esc(u.id)}</div></div><div class="acts">${act}</div></div>`;
+  }).join("");
+}
+
+/* ---------- amis ---------- */
+let friendsTok = 0;
+async function renderFriends() {
+  const tok = ++friendsTok, rq = Object.keys(reqIn), fr = Object.keys(friends);
+  const [ru, fu] = await Promise.all([Promise.all(rq.map(getUser)), Promise.all(fr.map(getUser))]);
+  if (tok !== friendsTok || !me) return;
+  fu.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+  let h = "";
+  if (ru.length) h += `<div class="sec">Demandes reçues (${ru.length})</div>` + ru.map(u =>
+    `<div class="row plain" style="cursor:default">${avatar(u)}<div class="mid"><div class="t">${esc(u.name)}</div><div class="s">@${esc(u.id)}</div></div>
+     <div class="acts"><button class="btn sm" data-accept="${esc(u.uid)}">Accepter</button><button class="btn soft sm" data-decline="${esc(u.uid)}">Refuser</button></div></div>`).join("");
+  h += `<div class="sec">Mes amis (${fu.length})</div>`;
+  h += fu.length ? fu.map(u =>
+    `<div class="row plain" data-open="${esc(u.uid)}">${avatar(u)}<div class="mid"><div class="t">${esc(u.name)}</div><div class="s">@${esc(u.id)}</div></div>
+     <div class="acts"><button class="btn danger sm" data-unfriend="${esc(u.uid)}">Retirer</button></div></div>`).join("")
+    : `<div class="empty"><b>Pas encore d’amis</b>Utilisez l’onglet Rechercher pour en ajouter.</div>`;
+  $("#p-friends").innerHTML = h;
+}
+
+/* ---------- réglages ---------- */
+function renderSettings() {
+  const ck = consent() === "all" ? "Acceptés" : consent() === "essential" ? "Essentiels uniquement" : "Non défini";
+  $("#p-settings").innerHTML = `
+    <div class="set-card"><div class="set-row"><div style="display:flex;gap:12px;align-items:center">${avatar(me)}<div><b>${esc(me.name)}</b><div style="color:var(--sub);font-size:14px">@${esc(me.id)}</div></div></div></div></div>
+    <div class="sec">Profil</div>
+    <div class="set-card"><div class="set-row" style="gap:8px"><input class="field" id="nameIn" value="${esc(me.name)}" maxlength="40" placeholder="Nom affiché" style="padding:10px 14px"><button class="btn sm" id="saveName">OK</button></div></div>
+    <div class="sec">Notifications</div>
+    <div class="set-card"><div class="set-row"><span>${"Notification" in window && Notification.permission === "granted" ? "Notifications activées" : "Notifications désactivées"}</span><button class="get" data-notif>${"Notification" in window && Notification.permission === "granted" ? "Tester" : "Activer"}</button></div><div class="set-row"><span>Ça ne marche pas ?</span><button class="get" data-diag>Diagnostic</button></div></div>
+    <div class="sec">Apparence</div>
+    <div class="set-card"><div class="set-row" style="flex-direction:column;align-items:stretch;gap:8px"><div style="display:flex;justify-content:space-between"><span>Intensité Liquid Glass</span><b id="lgv">${Math.round(LG*100)}%</b></div><input type="range" id="lg" min="0" max="100" value="${Math.round(LG*100)}"><div class="chips"><button class="btn soft sm" data-lg="20">Discret</button><button class="btn soft sm" data-lg="70">Équilibré</button><button class="btn soft sm" data-lg="100">Max</button></div></div></div>
+    <div class="set-card"><div class="set-row"><span>Style</span><div class="chips"><button class="btn soft sm" data-style="ios">iOS 27</button><button class="btn soft sm" data-style="mac">macOS</button></div></div></div>
+    <div class="set-card"><div class="set-row" style="flex-direction:column;align-items:stretch;gap:8px"><div style="display:flex;justify-content:space-between"><span>Flou du fond d’écran</span><b id="wbv">${BL.wb}px</b></div><input type="range" data-bl="wb" min="0" max="40" value="${BL.wb}"></div></div>
+    <div class="set-card"><div class="set-row" style="flex-direction:column;align-items:stretch;gap:8px"><div style="display:flex;justify-content:space-between"><span>Flou des conversations</span><b id="rbv">${BL.rb}px</b></div><input type="range" data-bl="rb" min="0" max="30" value="${BL.rb}"></div></div>
+    <div class="set-card"><div class="set-row"><span>Photo de profil</span><span style="display:flex;gap:6px"><label class="btn soft sm" for="photoIn">Choisir</label>${me.photo ? '<button class="btn danger sm" id="photoRm">Retirer</button>' : ""}<input type="file" id="photoIn" accept="image/*" hidden></span></div></div>
+    <div class="set-card hidden" id="instRow"><div class="set-row"><span>Installer l’application</span><button class="get" data-inst>Installer</button></div></div>
+    <div class="sec">Confidentialité</div>
+    <div class="set-card">
+      <div class="set-row"><span>Cookies</span><span class="link" id="ckReset">${ck} · modifier</span></div>
+      <div class="set-row"><a class="link" data-legal="cgu">Conditions d’utilisation</a></div>
+      <div class="set-row"><a class="link" data-legal="priv">Confidentialité &amp; cookies</a></div>
+      <div class="set-row"><a class="link" data-legal="legal">Mentions légales</a></div>
+    </div>
+    <div class="sec">Compte</div>
+    <div class="set-card"><div class="set-row"><button class="btn danger" id="logout" style="width:100%">Se déconnecter</button></div></div>
+    <div class="foot" style="margin-top:22px">TalcoExchange · GroupeTalco<br>TalcoAdministration · © TalcoInc2026<br><a class="link" href="mailto:talcoitn@gmail.com">talcoitn@gmail.com</a></div>`;
+}
+
+/* ---------- actions (délégation) ---------- */
+document.addEventListener("click", async e => {
+  const t = e.target.closest("[data-open],[data-add],[data-accept],[data-decline],[data-cancel],[data-unfriend],#saveName,#ckReset,#logout");
+  if (!t || !me) return;
+  const d = t.dataset;
+  try {
+    if (t.id === "logout") { await signOut(auth); return; }
+    if (t.id === "ckReset") { localStorage.removeItem("tx_cookies"); $("#cookie").classList.remove("hidden"); return; }
+    if (t.id === "saveName") {
+      const n = $("#nameIn").value.trim().slice(0, 40); if (!n) return;
+      await update(ref(db, "users/" + me.uid), { name: n }); me.name = n;
+      userCache.set(me.uid, Promise.resolve({ uid: me.uid, id: me.id, idLower: me.id, name: n, photo: me.photo }));
+      toast("Nom mis à jour"); renderSettings(); renderMe(); return;
+    }
+    if (d.unfriend) {
+      if (!confirm("Retirer cet ami ?")) return;
+      await update(ref(db), { [`friends/${me.uid}/${d.unfriend}`]: null, [`friends/${d.unfriend}/${me.uid}`]: null }); return;
+    }
+    if (d.add) { await set(ref(db, `requests/${d.add}/${me.uid}`), { ts: serverTimestamp(), id: me.id }); outgoing.add(d.add); inboxPost(d.add, "req", "t’a envoyé une demande d’ami"); toast("Demande envoyée"); renderResults(); return; }
+    if (d.cancel) { await remove(ref(db, `requests/${d.cancel}/${me.uid}`)); outgoing.delete(d.cancel); renderResults(); return; }
+    if (d.accept) {
+      await update(ref(db), { [`friends/${me.uid}/${d.accept}`]: true, [`friends/${d.accept}/${me.uid}`]: true, [`requests/${me.uid}/${d.accept}`]: null });
+      inboxPost(d.accept, "ok", "a accepté ta demande d’ami 🎉"); toast("Ami ajouté 🎉"); return;
+    }
+    if (d.decline) { await remove(ref(db, `requests/${me.uid}/${d.decline}`)); return; }
+    if (d.open) { if (e.target.closest("[data-unfriend]")) return; await openChat(d.open); }
+  } catch (x) { toast("Action impossible : " + (x.code || x.message)); }
+});
+
+/* ---------- v3 : apparence, installation, menus, messages ---------- */
+const M = new Map(); let HID = new Set(), sched = {}, editing = null, LG = .7;
+const flushing = new Set();
+const I = {
+  edit: '<svg class="i" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  copy: '<svg class="i" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>',
+  trash: '<svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
+  clock: '<svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  share: '<svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>'
+};
+const loc = t => new Date(t - new Date(t).getTimezoneOffset() * 6e4).toISOString().slice(0, 16);
+const hk = () => "tx_h_" + me.uid;
+const hidSet = () => { try { return new Set(JSON.parse(localStorage.getItem(hk()) || "[]")); } catch (x) { return new Set(); } };
+
+function setLg(v) {
+  LG = Math.max(0, Math.min(1, v)); document.documentElement.style.setProperty("--lg", LG); localStorage.setItem("tx_lg", LG);
+  const r = $("#lg"), l = $("#lgv"); if (r) r.value = Math.round(LG * 100); if (l) l.textContent = Math.round(LG * 100) + "%";
+}
+{ const v = localStorage.getItem("tx_lg"); setLg(v === null ? .7 : +v); }
+document.addEventListener("input", e => { if (e.target.id === "lg") setLg(e.target.value / 100); });
+document.addEventListener("click", e => { const b = e.target.closest("[data-lg]"); if (b) setLg(+b.dataset.lg / 100); });
+
+function sheet(html, on) {
+  const o = document.createElement("div"); o.className = "ov"; o.innerHTML = `<div class="sh glass">${html}</div>`;
+  o.addEventListener("pointerdown", e => { if (e.target === o) o.remove(); });
+  o.addEventListener("click", e => { const b = e.target.closest("[data-a]"); if (b) on ? on(b.dataset, o) : o.remove(); });
+  document.body.appendChild(o); return o;
+}
+function menu(items, rect, right, clone, emo) {
+  $$(".mn").forEach(x => x.remove());
+  const o = document.createElement("div"); o.className = "ov mn"; if (clone) o.appendChild(clone);
+  const m = document.createElement("div"); m.className = "cm glass";
+  m.innerHTML = (emo ? `<div class="emo">${emo.list.map(x => `<button type="button" class="em" data-e="${x}">${x}</button>`).join("")}</div>` : "") + items.map((it, i) => `<button type="button" class="mi ${it.red ? "red" : ""}" data-i="${i}"><span>${it.t}</span>${it.i}</button>`).join("");
+  o.appendChild(m); document.body.appendChild(o);
+  const w = m.offsetWidth, h = m.offsetHeight; let top = rect.bottom + 10, flip = false;
+  if (top + h > innerHeight - 16) { top = Math.max(12, rect.top - h - 10); flip = true; }
+  const left = Math.max(10, Math.min(innerWidth - w - 10, right ? rect.right - w : rect.left));
+  m.style.cssText = `top:${top}px;left:${left}px;--o:${right ? "100%" : "0"} ${flip ? "100%" : "0"}`;
+  m.onclick = e => { const x = e.target.closest(".em"); if (x) { o.remove(); emo.cb(x.dataset.e); return; } const b = e.target.closest(".mi"); if (b) { const it = items[b.dataset.i]; o.remove(); it.a(); } };
+  o.addEventListener("pointerdown", e => { if (e.target === o) o.remove(); });
+  return m;
+}
+function slide(e, mn) {
+  const id = e.pointerId; let cur = null;
+  const hit = ev => { const t = document.elementFromPoint(ev.clientX, ev.clientY)?.closest(".mi,.em"), n = t && mn.contains(t) ? t : null; if (n !== cur) { cur?.classList.remove("on"); cur = n; if (cur) { cur.classList.add("on"); navigator.vibrate?.(6); } } };
+  const mv = ev => { if (ev.pointerId === id) hit(ev); };
+  const off = () => { removeEventListener("pointermove", mv); removeEventListener("pointerup", up); removeEventListener("pointercancel", off); };
+  const up = ev => { if (ev.pointerId !== id) return; off(); if (cur) cur.click(); swallowClick(); };
+  addEventListener("pointermove", mv); addEventListener("pointerup", up); addEventListener("pointercancel", off);
+}
+addEventListener("touchmove", e => { if ($(".mn")) e.preventDefault(); }, { passive: false });
+
+{
+  const tb = $("#tabbar"), TABS = ["chats", "search", "friends", "settings"]; let did = null;
+  const idx = x => { const r = tb.getBoundingClientRect(), w = (r.width - 10) / 4; return Math.max(0, Math.min(3, Math.floor((x - r.left - 5) / w))); };
+  const mv = e => {
+    const r = tb.getBoundingClientRect(), w = (r.width - 10) / 4;
+    tb.style.setProperty("--x", Math.max(0, Math.min(r.width - 10 - w, e.clientX - r.left - 5 - w / 2)) + "px");
+    const i = idx(e.clientX); if (i !== tb._i) { tb._i = i; navigator.vibrate?.(5); $$(".tabbar button").forEach((b, k) => b.classList.toggle("on", k === i)); }
+  };
+  tb.addEventListener("pointerdown", e => { did = e.pointerId; tb._i = -1; tb.classList.add("drag"); tb.setPointerCapture(e.pointerId); mv(e); });
+  tb.addEventListener("pointermove", e => { if (e.pointerId === did) mv(e); });
+  tb.addEventListener("pointerup", e => { if (e.pointerId !== did) return; did = null; tb.classList.remove("drag"); setTab(TABS[idx(e.clientX)]); });
+  tb.addEventListener("pointercancel", () => { did = null; tb.classList.remove("drag"); setTab(curTab); });
+}
+
+let dip = null;
+const stand = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+function showInst() {
+  const on = !stand && (dip || ios);
+  $("#instAuth").classList.toggle("hidden", !on);
+  $("#inst").classList.toggle("hidden", !on || localStorage.getItem("tx_inx") === "1");
+  $("#instRow")?.classList.toggle("hidden", !on);
+}
+document.addEventListener("click", async e => {
+  if (e.target.closest("[data-instx]")) { localStorage.setItem("tx_inx", "1"); showInst(); return; }
+  if (!e.target.closest("[data-inst]")) return;
+  if (dip) { dip.prompt(); await dip.userChoice.catch(() => {}); dip = null; showInst(); }
+  else if (ios) sheet(`<h3>Installer TalcoExchange</h3><p>1. Touchez ${I.share} Partager dans Safari<br>2. Choisissez « Sur l’écran d’accueil »<br>3. Touchez « Ajouter »</p><button class="btn big" data-a="x">Compris</button>`);
+});
+showInst();
+
+const obKey = () => "tx_ob_" + me.uid;
+const obGet = () => { try { return JSON.parse(localStorage.getItem(obKey()) || "[]"); } catch (e) { return []; } };
+const obSet = a => { try { localStorage.setItem(obKey(), JSON.stringify(a)); } catch (e) { toast("Stockage local plein."); } };
+const inflight = new Set();
+async function put(e) {
+  const cid = chatId(me.uid, e.to), meta = { last: e.text.slice(0, 120), ts: serverTimestamp(), from: me.uid };
+  const msg = { from: me.uid, text: e.text, ts: serverTimestamp() }; if (e.reply) msg.reply = e.reply;
+  if (e.kind) { msg.kind = e.kind; if (e.dur) msg.dur = e.dur; if (e.w) { msg.w = e.w; msg.h = e.h; } }
+  const up = { [`chats/${cid}/messages/${e.key}`]: msg, [`userChats/${me.uid}/${e.to}`]: meta, [`userChats/${e.to}/${me.uid}`]: meta };
+  if (e.kind) up[`media/${cid}/${e.key}`] = { mime: e.mime, b64: e.b64 };
+  await update(ref(db), up);
+}
+const fatal = x => /permission|denied/i.test(String((x && (x.code || x.message)) || ""));
+function trySend(e) {
+  if (inflight.has(e.key)) return; inflight.add(e.key);
+  put(e).then(() => { obSet(obGet().filter(x => x.key !== e.key)); ping(e.to); }, x => {
+    if (fatal(x)) { obSet(obGet().filter(y => y.key !== e.key)); toast("Envoi refusé par Firebase : republiez database.rules.json."); }
+    else toast("Envoi en attente de connexion…");
+  }).finally(() => inflight.delete(e.key));
+}
+async function sendMsg(other, text, media, reply) {
+  const cid = chatId(me.uid, other), key = push(ref(db, `chats/${cid}/messages`)).key, e = { key, to: other, text, at: Date.now(), ...media, ...(reply ? { reply } : {}) };
+  if (media) idbSet(`${cid}/${key}`, { mime: media.mime, b64: media.b64 });
+  obSet([...obGet(), e]); trySend(e);
+}
+let obBusy = false;
+async function flushOb() {
+  if (!me || obBusy) return; obBusy = true;
+  try {
+    for (const e of obGet()) {
+      if (inflight.has(e.key)) continue;
+      try {
+        const sn = await get(ref(db, `chats/${chatId(me.uid, e.to)}/messages/${e.key}`));
+        if (sn.exists()) obSet(obGet().filter(x => x.key !== e.key)); else trySend(e);
+      } catch (x) { break; }
+    }
+  } finally { obBusy = false; }
+}
+const showOff = () => {};
+addEventListener("online", () => { showOff(); flushOb(); flush(); });
+addEventListener("offline", showOff);
+const lastKey = () => [...M.values()].pop()?.k;
+async function editMsg(k, text) {
+  const o = active, p = `chats/${chatId(me.uid, o)}/messages/${k}`, up = { [p + "/text"]: text, [p + "/edited"]: true };
+  if (lastKey() === k) { up[`userChats/${me.uid}/${o}/last`] = text.slice(0, 120); up[`userChats/${o}/${me.uid}/last`] = text.slice(0, 120); }
+  await update(ref(db), up);
+}
+function startEdit(k) { clearReply(); editing = k; const i = $("#msgIn"); i.value = M.get(k).text; $("#composer").classList.add("has"); $("#edBar").classList.remove("hidden"); $("#schedBar").classList.add("hidden"); i.focus(); }
+function endEdit() { editing = null; $("#edBar").classList.add("hidden"); $("#msgIn").value = ""; $("#composer").classList.remove("has"); schedBar(); }
+$("#edX").onclick = endEdit;
+function rerender() { const box = $("#msgs"); box.innerHTML = ""; lastMsgTs = 0; lastFrom = null; lastEl = null; [...M.values()].forEach(m => addMsg(m, 1)); box.scrollTop = box.scrollHeight; }
+function delMsg(k) {
+  const m = M.get(k); if (!m) return; const o = active;
+  sheet(`<h3>Supprimer le message ?</h3>${m.from === me.uid ? '<button class="btn danger big" data-a="all">Supprimer pour tout le monde</button>' : ""}<button class="btn soft big" data-a="me">Supprimer pour moi</button><button class="btn soft big" data-a="x">Annuler</button>`, async (d, sh) => {
+    sh.remove();
+    if (d.a === "me") { HID.add(k); localStorage.setItem(hk(), JSON.stringify([...HID])); rerender(); return; }
+    if (d.a !== "all") return;
+    const cid = chatId(me.uid, o), up = { [`chats/${cid}/messages/${k}`]: null }; if (m.kind) up[`media/${cid}/${k}`] = null;
+    if (lastKey() === k) {
+      const rest = [...M.values()].filter(x => x.k !== k), p = rest[rest.length - 1];
+      const meta = p ? { last: p.text.slice(0, 120), ts: p.ts, from: p.from } : { last: "Message supprimé", ts: Date.now(), from: me.uid };
+      up[`userChats/${me.uid}/${o}`] = meta; up[`userChats/${o}/${me.uid}`] = meta;
+    }
+    try { await update(ref(db), up); } catch (x) { toast("Suppression impossible."); }
+  });
+}
+function msgMenu(el, e) {
+  const k = el.dataset.k, m = M.get(k); if (!m || $(".mn") || !me) return;
+  const mine = m.from === me.uid, r = el.getBoundingClientRect(), c = el.cloneNode(true);
+  c.style.cssText = `position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;max-width:none;margin:0;z-index:2;animation:none;transform:scale(1.04)`;
+  const it = [{ t: "Répondre", i: I.reply, a: () => startReply(k) }]; if (mine && !m.kind) it.push({ t: "Modifier", i: I.edit, a: () => startEdit(k) });
+  if (!m.kind) it.push({ t: "Copier", i: I.copy, a: () => { navigator.clipboard?.writeText(m.text); toast("Copié"); } });
+  if (m.kind) it.push({ t: "Enregistrer", i: I.dl, a: () => dlMedia(el) });
+  it.push({ t: mine ? "Supprimer" : "Supprimer pour moi", i: I.trash, red: 1, a: () => delMsg(k) });
+  const mn = menu(it, r, mine, c, { list: ["❤️", "👍", "😂", "😮", "😢", "🙏"], cb: x => react(k, x) }); if (e) slide(e, mn);
+}
+{
+  const box = $("#msgs"); let lp, px, py;
+  box.addEventListener("pointerdown", e => { const el = e.target.closest(".m"); if (!el || e.button) return; px = e.clientX; py = e.clientY; clearTimeout(lp); lp = setTimeout(() => { navigator.vibrate?.(12); msgMenu(el, e); }, 380); });
+  box.addEventListener("pointermove", e => { if (Math.hypot(e.clientX - px, e.clientY - py) > 9) clearTimeout(lp); });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(n => box.addEventListener(n, () => clearTimeout(lp)));
+  document.addEventListener("contextmenu", e => { if (e.target.closest("#msgs, .mn, #plus, .send")) { e.preventDefault(); const el = e.target.closest("#msgs .m"); if (el) msgMenu(el); } });
+}
+
+function schedBar() {
+  const n = active ? Object.values(sched).filter(s => s.to === active).length : 0, b = $("#schedBar");
+  b.innerHTML = `${I.clock.replace('class="i"', 'class="i" style="width:16px;height:16px"')} ${n} programmé${n > 1 ? "s" : ""}`;
+  b.classList.toggle("hidden", !n || !!editing || !!replying);
+}
+$("#schedBar").onclick = () => schedList();
+function schedSheet(sid) {
+  if (!active) return toast("Ouvrez une discussion.");
+  const cur = sid && sched[sid], txt = cur ? cur.text : $("#msgIn").value.trim();
+  const at = (h, add = 0) => { const t = new Date(); t.setDate(t.getDate() + add); t.setHours(h, 0, 0, 0); return t.getTime(); };
+  const opts = [["Dans 1 h", Date.now() + 36e5], ["Ce soir 20:00", at(20)], ["Demain 9:00", at(9, 1)]].filter(o => o[1] > Date.now() + 6e4);
+  const s = sheet(`<h3>Programmer l’envoi</h3><input class="field" id="sT" maxlength="1000" placeholder="Message" value="${esc(txt)}"><div class="chips">${opts.map(([l, t]) => `<button type="button" class="btn soft sm" data-t="${t}">${l}</button>`).join("")}</div><input class="field" type="datetime-local" id="sD" min="${loc(Date.now())}" value="${loc(cur ? cur.sendAt : Date.now() + 36e5)}"><button class="btn big" data-a="ok">Programmer</button><p>L’envoi part quand TalcoExchange est ouvert à l’heure choisie (ou à la prochaine ouverture).</p>`, async (d, o) => {
+    const t = s.querySelector("#sT").value.trim(), w = new Date(s.querySelector("#sD").value).getTime();
+    if (!t || isNaN(w)) return toast("Message et date requis.");
+    const id = sid || push(ref(db, `scheduled/${me.uid}`)).key; o.remove();
+    try {
+      await set(ref(db, `scheduled/${me.uid}/${id}`), { to: cur ? cur.to : active, text: t, sendAt: w });
+      if (!sid) { $("#msgIn").value = ""; $("#composer").classList.remove("has"); }
+      toast("Programmé : " + new Date(w).toLocaleString("fr-FR", { weekday: "short", hour: "2-digit", minute: "2-digit" }));
+    } catch (x) { toast("Programmation impossible."); }
+  });
+  s.addEventListener("click", e => { const b = e.target.closest("[data-t]"); if (b) s.querySelector("#sD").value = loc(+b.dataset.t); });
+}
+function schedList() {
+  const L = Object.entries(sched).filter(([, s]) => s.to === active).sort((a, b) => a[1].sendAt - b[1].sendAt); if (!L.length) return;
+  const f = t => new Date(t).toLocaleString("fr-FR", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  sheet(`<h3>Messages programmés</h3>${L.map(([id, m]) => `<div class="sr"><div><b>${esc(m.text.slice(0, 60))}</b><small>${f(m.sendAt)}</small></div><div class="sa"><button class="btn soft sm" data-a="send" data-id="${id}">Envoyer</button><button class="btn soft sm" data-a="edit" data-id="${id}">Modifier</button><button class="btn danger sm" data-a="del" data-id="${id}">✕</button></div></div>`).join("")}<button class="btn soft big" data-a="x">Fermer</button>`, async (d, o) => {
+    o.remove(); const r = ref(db, `scheduled/${me.uid}/${d.id}`);
+    try { if (d.a === "del") await remove(r); else if (d.a === "send") await update(r, { sendAt: Date.now() }); else if (d.a === "edit") schedSheet(d.id); } catch (x) { toast("Action impossible."); }
+  });
+}
+async function flush() {
+  if (!me) return; flushOb();
+  for (const [id, s] of Object.entries(sched)) {
+    if (s.sendAt > Date.now() || flushing.has(id)) continue; flushing.add(id);
+    try { const r = await runTransaction(ref(db, `scheduled/${me.uid}/${id}`), v => v ? null : undefined); if (r.committed) await sendMsg(s.to, s.text); }
+    catch (x) { toast("Message programmé non envoyé."); }
+    flushing.delete(id);
+  }
+}
+$("#plus").addEventListener("pointerdown", e => {
+  e.preventDefault(); if (!active) return;
+  const r = e.currentTarget.getBoundingClientRect(), it = [{ t: "Photo", i: I.img, a: () => $("#imgIn").click() }, { t: "Message vocal", i: I.mic, a: recSheet }, { t: "Programmer l’envoi", i: I.clock, a: () => schedSheet() }];
+  const n = Object.values(sched).filter(s => s.to === active).length;
+  if (n) it.push({ t: `Programmés (${n})`, i: I.clock, a: schedList });
+  slide(e, menu(it, r, false, null));
+});
+{
+  const sb = $(".send"); let lp = false;
+  sb.addEventListener("pointerdown", () => { lp = false; sb._t = setTimeout(() => { lp = true; navigator.vibrate?.(12); schedSheet(); }, 450); });
+  ["pointerup", "pointerleave", "pointercancel"].forEach(n => sb.addEventListener(n, () => clearTimeout(sb._t)));
+  sb.addEventListener("pointerup", () => { if (lp) swallowClick(); });
+  sb.addEventListener("click", e => { if (lp) { e.preventDefault(); lp = false; } });
+}
+
+/* ---------- v4 : style, personnalisation, photo ---------- */
+function setStyle(v) { document.documentElement.dataset.mode = v; localStorage.setItem("tx_mode", v); }
+setStyle(localStorage.getItem("tx_mode") || "ios");
+document.addEventListener("click", e => { const b = e.target.closest("[data-style]"); if (b) setStyle(b.dataset.style); });
+
+const pcKey = () => `tx_pc_${me.uid}_${active}`;
+const pcGet = () => { try { return JSON.parse(localStorage.getItem(pcKey()) || "{}"); } catch (x) { return {}; } };
+function pcApply() {
+  if (!me || !active) return; const c = pcGet(), ch = $("#chat");
+  if (c.c) ch.style.setProperty("--sent", c.c); else ch.style.removeProperty("--sent");
+  ch.style.setProperty("--fs", (c.s || 17) + "px");
+}
+const pcSet = o => { localStorage.setItem(pcKey(), JSON.stringify({ ...pcGet(), ...o })); pcApply(); };
+function pcSheet() {
+  if (!active) return; const c = pcGet(), cols = ["#34c759", "#0a84ff", "#bf5af2", "#ff375f", "#ff9f0a", "#5e5ce6", "#30b0c7"];
+  const s = sheet(`<h3>Personnaliser la discussion</h3><p>Couleur de vos bulles</p><div class="chips">${cols.map(x => `<button type="button" class="sw" data-c="${x}" style="background:${x}"></button>`).join("")}<input type="color" id="pcC" value="${c.c || "#34c759"}"></div><p>Taille du texte : <b id="pcV">${c.s || 17}</b> px</p><input type="range" id="pcS" min="13" max="24" value="${c.s || 17}"><button class="btn soft big" data-a="r">Réinitialiser</button><button class="btn big" data-a="x">OK</button>`, (d, o) => { if (d.a === "r") { localStorage.removeItem(pcKey()); pcApply(); } o.remove(); });
+  s.addEventListener("click", e => { const b = e.target.closest("[data-c]"); if (b) { pcSet({ c: b.dataset.c }); s.querySelector("#pcC").value = b.dataset.c; } });
+  s.addEventListener("input", e => {
+    if (e.target.id === "pcC") pcSet({ c: e.target.value });
+    if (e.target.id === "pcS") { pcSet({ s: +e.target.value }); s.querySelector("#pcV").textContent = e.target.value; }
+  });
+}
+$(".cwho .pill").onclick = pcSheet;
+
+function shrink(file) {
+  return new Promise((res, rej) => {
+    const img = new Image(); img.onload = () => {
+      const c = document.createElement("canvas"); c.width = c.height = 160; const x = c.getContext("2d"), m = Math.min(img.width, img.height);
+      x.drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, 160, 160); URL.revokeObjectURL(img.src); res(c.toDataURL("image/jpeg", .75));
+    }; img.onerror = rej; img.src = URL.createObjectURL(file);
+  });
+}
+async function setPhoto(url) {
+  await update(ref(db, "users/" + me.uid), { photo: url }); me.photo = url || undefined;
+  userCache.set(me.uid, Promise.resolve({ uid: me.uid, id: me.id, idLower: me.id, name: me.name, photo: me.photo }));
+  renderMe(); renderSettings(); showInst();
+}
+document.addEventListener("change", async e => {
+  if (e.target.id !== "photoIn" || !me) return; const f = e.target.files[0]; if (!f) return;
+  try { await setPhoto(await shrink(f)); toast("Photo mise à jour"); } catch (x) { toast("Photo impossible."); }
+});
+document.addEventListener("click", async e => { if (e.target.id === "photoRm" && me) { try { await setPhoto(null); } catch (x) { toast("Action impossible."); } } });
+
+/* ---------- clavier : la page ne bouge plus, messages + clavier visibles ---------- */
+if (window.visualViewport) {
+  const vv = visualViewport, ap = $("#app"); let maxH = 0;
+  const fit = () => {
+    maxH = Math.max(maxH, vv.height); const kb = vv.height < maxH - 120;
+    document.documentElement.classList.toggle("kb", kb);
+    ap.style.bottom = "auto"; ap.style.height = vv.height + "px"; ap.style.top = vv.offsetTop + "px"; scrollTo(0, 0);
+    if (kb && active) { const b = $("#msgs"); b.scrollTop = b.scrollHeight; }
+  };
+  vv.addEventListener("resize", fit); vv.addEventListener("scroll", fit); addEventListener("orientationchange", () => { maxH = 0; setTimeout(fit, 300); }); fit();
+}
+$("#msgIn").addEventListener("focus", () => setTimeout(() => { scrollTo(0, 0); const b = $("#msgs"); b.scrollTop = b.scrollHeight; }, 320));
+
+/* ---------- v7 : cache local, photos et audio (base64) ---------- */
+document.body.insertAdjacentHTML("beforeend", '<input type="file" id="imgIn" accept="image/*" hidden><div class="offbar glass hidden" id="offBar">Hors ligne · conversations enregistrées</div>');
+showOff();
+I.img = '<svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>';
+I.mic = '<svg class="i" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+
+const mcKey = () => "tx_mc_" + chatId(me.uid, active);
+let mcT;
+function saveCache() {
+  clearTimeout(mcT);
+  mcT = setTimeout(() => {
+    if (!me || !active || !M.size) return;
+    try { localStorage.setItem(mcKey(), JSON.stringify([...M.values()].filter(m => !m.pend).slice(-150).map(({ b64, ...r }) => r))); } catch (e) {}
+  }, 500);
+}
+
+const idb = new Promise(res => { try { const r = indexedDB.open("tx", 1); r.onupgradeneeded = () => r.result.createObjectStore("m"); r.onsuccess = () => res(r.result); r.onerror = () => res(null); } catch (e) { res(null); } });
+const idbGet = async k => { const d = await idb; return d ? new Promise(res => { const q = d.transaction("m").objectStore("m").get(k); q.onsuccess = () => res(q.result); q.onerror = () => res(null); }) : null; };
+const idbSet = async (k, v) => { const d = await idb; if (d) try { d.transaction("m", "readwrite").objectStore("m").put(v, k); } catch (e) {} };
+
+/* base64 → Blob (décodage à l'arrivée) */
+const b64Blob = (b64, mime) => { const bin = atob(b64), a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return new Blob([a], { type: mime }); };
+const mediaIO = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { mediaIO.unobserve(en.target); loadMedia(en.target); } }), { rootMargin: "300px" });
+function setMedia(el, mime, b64) {
+  el._mime = mime; const t = el.querySelector("img,audio"), box = $("#msgs"), stick = box.scrollHeight - box.scrollTop - box.clientHeight < 220;
+  if (t.tagName === "IMG") t.onload = () => { t.style.aspectRatio = "auto"; if (stick) box.scrollTop = box.scrollHeight; };
+  t.src = URL.createObjectURL(b64Blob(b64, mime));
+}
+function swallowClick() { const f = c => { c.stopPropagation(); c.preventDefault(); }; addEventListener("click", f, { capture: true, once: true }); setTimeout(() => removeEventListener("click", f, true), 700); }
+function initMedia(el, m) {
+  el.classList.add("media"); el.dataset.media = m.kind; el._m = m; el._cid = chatId(me.uid, active);
+  el.innerHTML = m.kind === "img" ? "<img alt=\"\">" : "<audio controls preload=\"metadata\"></audio>";
+  if (m.kind === "img") el.firstChild.style.aspectRatio = m.w ? m.w + "/" + m.h : "4/3";
+  if (m.b64) setMedia(el, m.mime, m.b64); else mediaIO.observe(el);
+}
+const DAY = 864e5, rdSet = new Set();
+const expired = el => { el.classList.remove("media"); el.innerHTML = '<span class="expd">⏳ Média expiré</span>'; };
+async function loadMedia(el) {
+  const id = `${el._cid}/${el._m.k}`, theirs = el._m.from !== me.uid;
+  try {
+    let d = await idbGet(id);
+    if (!d) {
+      const sn = await get(ref(db, "media/" + id)); if (!sn.exists()) return expired(el);
+      d = sn.val();
+      if (d.readAt && Date.now() - d.readAt > DAY) { remove(ref(db, "media/" + id)).catch(() => {}); return expired(el); }
+      idbSet(id, { mime: d.mime, b64: d.b64 });
+    }
+    setMedia(el, d.mime, d.b64);
+    if (theirs) {
+      const mk = () => { if (rdSet.has(id)) return; rdSet.add(id); set(ref(db, `media/${id}/readAt`), serverTimestamp()).catch(() => {}); };
+      if (el._m.kind === "img") mk(); else el.querySelector("audio").addEventListener("play", mk, { once: true });
+    }
+  } catch (x) { /* hors ligne et pas en cache */ }
+}
+async function sweep(m, cid) {
+  if (!m.kind) return; const id = `${cid}/${m.k}`;
+  try {
+    const sn = await get(ref(db, `media/${id}/readAt`)), old = typeof m.ts === "number" && Date.now() - m.ts > 7 * DAY;
+    if (old || (sn.exists() && Date.now() - sn.val() > DAY)) await remove(ref(db, "media/" + id));
+  } catch (x) {}
+}
+I.dl = '<svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>';
+function dlMedia(el) {
+  const t = el.querySelector("img,audio"), m = el._m; if (!t || !t.src) return toast("Média pas encore chargé.");
+  const ext = m.kind === "img" ? "jpg" : /mp4/.test(el._mime || "") ? "m4a" : "webm";
+  const a = document.createElement("a"); a.href = t.src; a.download = `talco-${m.kind === "img" ? "photo" : "vocal"}-${m.k.slice(-6)}.${ext}`;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+$("#msgs").addEventListener("click", e => {
+  const i = e.target.closest(".m.media img"); if (!i || !i.src) return;
+  const o = document.createElement("div"); o.className = "ov lb"; o.innerHTML = `<img src="${i.src}" alt=""><a class="get" href="${i.src}" download="talco-photo.jpg">Enregistrer</a>`; o.onclick = e => { if (!e.target.closest("a")) o.remove(); }; document.body.appendChild(o);
+});
+
+function shrinkImg(file) {
+  return new Promise((res, rej) => {
+    const img = new Image(); img.onload = () => {
+      URL.revokeObjectURL(img.src);
+      for (const [mx, q] of [[1280, .72], [1024, .6], [800, .5]]) {
+        const k = Math.min(1, mx / Math.max(img.width, img.height)), w = Math.round(img.width * k), h = Math.round(img.height * k);
+        const c = document.createElement("canvas"); c.width = w; c.height = h; c.getContext("2d").drawImage(img, 0, 0, w, h);
+        const b64 = c.toDataURL("image/jpeg", q).split(",")[1]; if (b64.length <= 1.1e6) return res({ b64, w, h });
+      }
+      rej();
+    }; img.onerror = rej; img.src = URL.createObjectURL(file);
+  });
+}
+$("#imgIn").addEventListener("change", async e => {
+  const f = e.target.files[0]; e.target.value = ""; if (!f || !active) return;
+  try { const d = await shrinkImg(f); await sendMsg(active, "📷 Photo", { kind: "img", mime: "image/jpeg", b64: d.b64, w: d.w, h: d.h }, takeReply()); } catch (x) { toast("Photo impossible."); }
+});
+
+async function recSheet() {
+  if (!active) return;
+  if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) return toast("Micro non supporté.");
+  let st; try { st = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (x) { return toast("Micro refusé."); }
+  const mime = ["audio/webm;codecs=opus", "audio/mp4", "audio/webm"].find(t => MediaRecorder.isTypeSupported(t)) || "";
+  const rec = new MediaRecorder(st, mime ? { mimeType: mime } : {}), ch = [], t0 = Date.now(); let send = false, tm;
+  rec.ondataavailable = e => { if (e.data.size) ch.push(e.data); };
+  rec.onstop = async () => {
+    st.getTracks().forEach(t => t.stop()); clearInterval(tm); if (!send) return;
+    const blob = new Blob(ch, { type: rec.mimeType || mime || "audio/webm" }), dur = Math.round((Date.now() - t0) / 1000);
+    const b64 = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result.split(",")[1]); fr.readAsDataURL(blob); });
+    if (b64.length > 1.2e6) return toast("Vocal trop long.");
+    await sendMsg(active, "🎤 Message vocal", { kind: "aud", mime: blob.type, b64, dur }, takeReply());
+  };
+  rec.start();
+  const sh = sheet(`<h3>Message vocal</h3><p id="rT" style="font-size:22px">0:00</p><button class="btn big" data-a="ok">Envoyer</button><button class="btn soft big" data-a="x">Annuler</button>`, (d, o) => { send = d.a === "ok"; o.remove(); if (rec.state !== "inactive") rec.stop(); });
+  new MutationObserver(() => { if (!sh.isConnected && rec.state !== "inactive") rec.stop(); }).observe(document.body, { childList: true });
+  tm = setInterval(() => {
+    const n = Math.round((Date.now() - t0) / 1000), el = document.getElementById("rT");
+    if (el) el.textContent = Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
+    if (n >= 60 && rec.state !== "inactive") { send = true; sh.remove(); }
+  }, 500);
+}
+
+/* ---------- réglages de flou ---------- */
+const BL = { wb: 0, rb: 13 };
+function setBl(k, v) { BL[k] = v; document.documentElement.style.setProperty("--" + k, v + "px"); localStorage.setItem("tx_" + k, v); const l = $("#" + k + "v"); if (l) l.textContent = v + "px"; }
+for (const k in BL) { const v = localStorage.getItem("tx_" + k); setBl(k, v === null ? BL[k] : +v); }
+document.addEventListener("input", e => { if (e.target.dataset && e.target.dataset.bl) setBl(e.target.dataset.bl, +e.target.value); });
+
+/* ---------- réactions emoji ---------- */
+function renderRx(el, m) {
+  el.querySelector(".qt")?.remove();
+  if (m.reply) { const q = document.createElement("div"); q.className = "qt"; q.dataset.go = m.reply.k; q.innerHTML = `<b>${esc(m.reply.from === me.uid ? "Vous" : $("#chName").textContent)}</b><span>${esc(m.reply.text)}</span>`; el.insertBefore(q, el.firstChild); }
+  el.querySelector(".rx")?.remove(); const r = m.reacts ? Object.values(m.reacts) : [];
+  if (!r.length) { delete el.dataset.rx; return; }
+  const c = {}; r.forEach(x => c[x] = (c[x] || 0) + 1);
+  const b = document.createElement("span"); b.className = "rx" + (m.reacts[me.uid] ? " mine" : "");
+  b.textContent = Object.entries(c).map(([x, n]) => n > 1 ? x + n : x).join(" ");
+  el.appendChild(b); el.dataset.rx = 1;
+}
+async function react(k, x) {
+  const m = M.get(k); if (!m || !me || !active) return;
+  const path = ref(db, `chats/${chatId(me.uid, active)}/messages/${k}/reacts/${me.uid}`);
+  try {
+    if (m.reacts && m.reacts[me.uid] === x) await remove(path); else { await set(path, x); if (m.from !== me.uid) inboxPost(m.from, "react", `a réagi ${x} à ton message`); }
+  } catch (e) { toast("Réaction impossible."); }
+}
+
+/* ---------- connexion : accroche qui change + léger relief ---------- */
+
+/* ---------- répondre à un message ---------- */
+let replying = null;
+I.reply = '<svg class="i" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 6 6v3"/></svg>';
+function startReply(k) {
+  const m = M.get(k); if (!m) return; endEdit();
+  replying = { k, from: m.from, text: (m.kind ? (m.kind === "img" ? "📷 Photo" : "🎤 Message vocal") : m.text).slice(0, 120) };
+  $("#rpWho").textContent = m.from === me.uid ? "Vous" : $("#chName").textContent; $("#rpTx").textContent = replying.text;
+  $("#rpBar").classList.remove("hidden"); $("#schedBar").classList.add("hidden"); $("#msgIn").focus();
+}
+function clearReply() { replying = null; $("#rpBar").classList.add("hidden"); schedBar(); }
+function takeReply() { const r = replying; if (r) clearReply(); return r || undefined; }
+$("#rpX").onclick = clearReply;
+$("#msgs").addEventListener("click", e => {
+  const q = e.target.closest(".qt"); if (!q) return;
+  const t = $(`#msgs [data-k="${q.dataset.go}"]`); if (!t) return toast("Message d’origine introuvable.");
+  t.scrollIntoView({ block: "center", behavior: "smooth" }); t.classList.add("hl"); setTimeout(() => t.classList.remove("hl"), 1000);
+});
+/* glisser le message vers le centre pour répondre */
+{
+  const box = $("#msgs"); let sw = null;
+  box.addEventListener("pointerdown", e => { const el = e.target.closest(".m"); if (!el || e.button) return; sw = { el, x: e.clientX, y: e.clientY, id: e.pointerId, on: false, dir: el.classList.contains("me") ? -1 : 1, go: false }; });
+  box.addEventListener("pointermove", e => {
+    if (!sw || e.pointerId !== sw.id) return; const dx = (e.clientX - sw.x) * sw.dir, dy = e.clientY - sw.y;
+    if (!sw.on) {
+      if (dx > 12 && dx > Math.abs(dy) * 1.6) {
+        sw.on = true; sw.el.style.animation = "none"; sw.el.style.transition = "none";
+        const i = document.createElement("span"); i.className = "swi"; i.style[sw.dir > 0 ? "left" : "right"] = "-36px"; i.innerHTML = I.reply; sw.el.appendChild(i);
+        try { box.setPointerCapture(e.pointerId); } catch (x) {}
+      } else return;
+    }
+    sw.el.style.transform = `translateX(${sw.dir * Math.max(0, Math.min(80, dx)) * .7}px)`;
+    const go = dx > 70; if (go !== sw.go) { sw.go = go; if (go) navigator.vibrate?.(10); const i = sw.el.querySelector(".swi"); if (i) i.style.color = go ? "var(--blue)" : ""; }
+  });
+  const end = e => {
+    if (!sw || e.pointerId !== sw.id) return; const s = sw; sw = null; if (!s.on) return;
+    s.el.style.transition = "transform .3s cubic-bezier(.3,1.5,.5,1), box-shadow .25s"; s.el.style.transform = ""; s.el.querySelector(".swi")?.remove();
+    if (s.go) startReply(s.el.dataset.k); swallowClick();
+  };
+  box.addEventListener("pointerup", end); box.addEventListener("pointercancel", end);
+}
+
+/* ---------- notifications ---------- */
+// Web Push gratuit : clé publique + adresse du relais Cloudflare (voir cloudflare-worker/LISEZMOI.txt)
+const PUSH_PUB = "BA8gufdIkmxTX_fCIfkX8CP9l_8uvU5pL9VMuxO6PN68-PZ7_11YR2qecJyBRKCtqcTus8G2tju6Abfml7yKXs4";
+const RELAY_URL = "https://talco-push.antoineclaudeai.workers.dev";
+const u8 = b => Uint8Array.from(atob(b.replace(/-/g, "+").replace(/_/g, "/")), c => c.charCodeAt(0));
+async function ping(to) {
+  if (!RELAY_URL || !me) return;
+  try {
+    const sn = await get(ref(db, `push/${to}`)); if (!sn.exists()) return;
+    const tok = await auth.currentUser.getIdToken();
+    await fetch(RELAY_URL, { method: "POST", headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" }, body: JSON.stringify({ endpoints: Object.values(sn.val()) }) });
+  } catch (x) { /* le message est parti, seule la notification manque */ }
+}
+let seen = null;
+function notif(title, body, tag, icon, ts) {
+  if (!("Notification" in window) || Notification.permission !== "granted" || !navigator.serviceWorker) return;
+  navigator.serviceWorker.ready.then(r => r.showNotification(title, { body, icon: icon || "icon-192.png", badge: "badge-96.png", tag: "tx-" + tag + "-" + (ts || Date.now()), timestamp: ts || Date.now(), data: { open: tag } }).then(syncBadge)).catch(() => {});
+}
+function notifyNew(c) {
+  if (!seen) { seen = {}; for (const u in c) seen[u] = c[u].ts || 0; return; }
+  for (const u in c) {
+    const v = c[u], t = v.ts || 0;
+    if (t > (seen[u] || 0) && v.from !== me.uid && !(document.visibilityState === "visible" && active === u)) {
+      getUser(u).then(pr => { const body = v.last || "Nouveau message", nm = pr.name || pr.id; if (document.visibilityState === "visible") toast(nm + " : " + body); else notif(nm, body, u, pr.photo, t); });
+    }
+    seen[u] = Math.max(seen[u] || 0, t);
+  }
+}
+async function regPush() {
+  if (!me || !("Notification" in window) || !("PushManager" in window) || Notification.permission !== "granted") return;
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: u8(PUSH_PUB) });
+    const id = btoa(sub.endpoint).replace(/[^A-Za-z0-9]/g, "").slice(-32);
+    await set(ref(db, `push/${me.uid}/${id}`), sub.endpoint);
+  } catch (x) { /* les notifications locales restent actives */ }
+}
+document.addEventListener("click", async e => {
+  if (!e.target.closest("[data-notif]")) return;
+  if (!("Notification" in window)) return toast("Notifications indisponibles ici (iPhone : installe d’abord l’appli sur l’écran d’accueil).");
+  if (Notification.permission !== "granted") {
+    const r = await Notification.requestPermission(); if (r !== "granted") return toast("Notifications refusées.");
+    regPush(); renderSettings(); showInst(); return;
+  }
+  notif("TalcoExchange", "Les notifications fonctionnent ✅", "test");
+});
+navigator.serviceWorker?.addEventListener("message", e => { if (e.data && e.data.open && e.data.open !== "test" && me) openChat(e.data.open); });
+
+/* ---------- appels vocaux et vidéo (WebRTC, signalisation Firebase) ---------- */
+{
+  const ph = '<svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>', vd = '<svg class="i" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></svg>', fl = '<svg class="i" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 4v4h-4M21 12a9 9 0 0 1-15 6.7L3 16M3 20v-4h4"/></svg>';
+  document.body.insertAdjacentHTML("beforeend", `
+<div id="call" class="hidden"><video id="rv" autoplay playsinline></video><div class="cav" id="cAv"></div><video id="lv" autoplay playsinline muted></video>
+  <div class="ctop glass"><b id="cNm"></b><span id="cSt"></span></div>
+  <div class="cbar glass"><button id="cMic" aria-label="Micro">${I.mic}</button><button id="cCam" aria-label="Caméra">${vd}</button><button id="cFlip" aria-label="Changer de caméra">${fl}</button><button id="cEnd" class="red" aria-label="Raccrocher">${ph}</button></div></div>
+<div id="inc" class="hidden"><div class="box glass"><div id="iAv"></div><b id="iNm"></b><span id="iKd"></span><div class="row2"><button class="no" id="iNo" aria-label="Refuser">${ph}</button><button class="yes" id="iYes" aria-label="Accepter">${ph}</button></div></div></div>`);
+}
+const STUN = [{ urls: "stun:stun.cloudflare.com:3478" }, { urls: "stun:stun.l.google.com:19302" }];
+let call = null, inc = null, iceS = null, iceAt = 0, ringI = null, actx = null;
+const CK = cid => `calls/${cid}`, fmtDur = n => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
+async function getIce() {
+  if (iceS && Date.now() - iceAt < 36e5) return iceS;
+  let r = STUN;
+  if (RELAY_URL) try {
+    const tok = await auth.currentUser.getIdToken(), x = await fetch(RELAY_URL.replace(/\/$/, "") + "/turn", { method: "POST", headers: { Authorization: "Bearer " + tok } });
+    if (x.ok) { const j = await x.json(); if (j.iceServers && j.iceServers.length) r = [...STUN, ...j.iceServers]; }
+  } catch (e) { /* STUN seul */ }
+  iceS = r; iceAt = Date.now(); return r;
+}
+async function getMedia(kind) {
+  try { return await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true }, video: kind === "video" ? { facingMode: "user" } : false }); }
+  catch (e) { toast(kind === "video" ? "Caméra ou micro refusé." : "Micro refusé."); return null; }
+}
+function startRing() {
+  stopRing();
+  const beep = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime; o.frequency.value = 480; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.22, t + .05); g.gain.exponentialRampToValueAtTime(.0001, t + .9); o.connect(g); g.connect(actx.destination); o.start(); o.stop(t + 1); navigator.vibrate?.([300, 150, 300]); } catch (e) {} };
+  beep(); ringI = setInterval(beep, 2000);
+}
+const stopRing = () => { clearInterval(ringI); ringI = null; };
+const setSt = t => { $("#cSt").textContent = t; };
+function tick() { if (call && call.t0) setSt(fmtDur(Math.round((Date.now() - call.t0) / 1000))); }
+function addCand(c) { if (!call) return; if (call.pc.remoteDescription) call.pc.addIceCandidate(c).catch(() => {}); else call.q.push(c); }
+async function setRemote(d) { await call.pc.setRemoteDescription(d); call.q.splice(0).forEach(c => call.pc.addIceCandidate(c).catch(() => {})); }
+async function mkPc(cid, role, stream) {
+  const pc = new RTCPeerConnection({ iceServers: await getIce() });
+  stream.getTracks().forEach(t => pc.addTrack(t, stream));
+  pc.onicecandidate = e => { if (e.candidate) push(ref(db, `${CK(cid)}/cand/${role}`), JSON.parse(JSON.stringify(e.candidate))); };
+  pc.ontrack = e => { const rv = $("#rv"); if (rv.srcObject !== e.streams[0]) rv.srcObject = e.streams[0]; };
+  pc.onconnectionstatechange = () => {
+    if (!call || call.pc !== pc) return;
+    if (pc.connectionState === "connected" && !call.t0) { call.t0 = Date.now(); clearTimeout(call.ringT); call.tick = setInterval(tick, 1000); tick(); }
+    if (pc.connectionState === "failed") endCall(true, "Connexion perdue");
+    if (pc.connectionState === "disconnected") setTimeout(() => { if (call && call.pc === pc && pc.connectionState === "disconnected") endCall(true, "Connexion perdue"); }, 7000);
+  };
+  return pc;
+}
+function showCall() {
+  const c = call, k = c.kind === "video";
+  $("#call").className = k ? "" : "voice"; $("#lv").srcObject = k ? c.stream : null; $("#cMic").classList.remove("off"); $("#cCam").classList.remove("off");
+  getUser(c.other).then(u => { $("#cNm").textContent = u.name; $("#cAv").innerHTML = avatar(u, "lg"); });
+}
+async function startCall(kind) {
+  if (call) return toast("Un appel est déjà en cours.");
+  if (!active || !me) return toast("Ouvrez une discussion.");
+  if (!navigator.mediaDevices?.getUserMedia || !window.RTCPeerConnection) return toast("Appels non supportés sur ce navigateur.");
+  const other = active, cid = chatId(me.uid, other), stream = await getMedia(kind); if (!stream) return;
+  try { await remove(ref(db, CK(cid))); } catch (e) { stream.getTracks().forEach(t => t.stop()); return toast("Appel impossible (règles Firebase à republier ?)."); }
+  const pc = await mkPc(cid, "caller", stream);
+  call = { cid, other, kind, role: "caller", pc, stream, un: [], q: [], t0: 0, facing: "user" };
+  showCall(); setSt("Appel…");
+  try {
+    const offer = await pc.createOffer(); await pc.setLocalDescription(offer);
+    await update(ref(db, CK(cid)), { from: me.uid, to: other, kind, state: "ringing", offer: { type: offer.type, sdp: offer.sdp }, ts: serverTimestamp() });
+    await set(ref(db, "incoming/" + other), { from: me.uid, kind, cid, ts: serverTimestamp() });
+  } catch (e) { endCall(false, "Appel impossible (règles Firebase à republier ?)."); return; }
+  ping(other);
+  call.un.push(onValue(ref(db, CK(cid)), async sn => {
+    const v = sn.val(); if (!call || call.cid !== cid) return;
+    if (!v || v.state === "ended") return endCall(false, "Appel terminé");
+    if (v.state === "declined") return endCall(false, "Appel refusé");
+    if (v.answer && call.pc.signalingState === "have-local-offer") { setSt("Connexion…"); await setRemote(v.answer); }
+  }));
+  call.un.push(onChildAdded(ref(db, `${CK(cid)}/cand/callee`), sn => addCand(sn.val())));
+  call.ringT = setTimeout(() => { if (call && !call.t0) endCall(true, "Pas de réponse"); }, 45000);
+}
+async function acceptCall() {
+  const v = inc; if (!v) return; hideInc();
+  let c; try { c = (await get(ref(db, CK(v.cid)))).val(); } catch (e) {}
+  if (!c || c.state !== "ringing") return toast("L’appel est terminé.");
+  const stream = await getMedia(c.kind); if (!stream) { update(ref(db, CK(v.cid)), { state: "declined" }).catch(() => {}); remove(ref(db, "incoming/" + me.uid)).catch(() => {}); return; }
+  const pc = await mkPc(v.cid, "callee", stream);
+  call = { cid: v.cid, other: v.from, kind: c.kind, role: "callee", pc, stream, un: [], q: [], t0: 0, facing: "user" };
+  showCall(); setSt("Connexion…");
+  try {
+    await setRemote(c.offer); const ans = await pc.createAnswer(); await pc.setLocalDescription(ans);
+    await update(ref(db, CK(v.cid)), { answer: { type: ans.type, sdp: ans.sdp }, state: "active" });
+  } catch (e) { endCall(false, "Connexion impossible."); return; }
+  remove(ref(db, "incoming/" + me.uid)).catch(() => {});
+  call.un.push(onChildAdded(ref(db, `${CK(v.cid)}/cand/caller`), sn => addCand(sn.val())));
+  call.un.push(onValue(ref(db, CK(v.cid)), sn => { const x = sn.val(); if (call && call.cid === v.cid && (!x || x.state === "ended")) endCall(false, "Appel terminé"); }));
+}
+function declineCall() {
+  const v = inc; hideInc(); if (!v) return;
+  update(ref(db, CK(v.cid)), { state: "declined" }).catch(() => {}); remove(ref(db, "incoming/" + me.uid)).catch(() => {});
+}
+function hideInc() { inc = null; stopRing(); const el = $("#inc"); if (el) el.classList.add("hidden"); }
+async function onIncoming(v) {
+  if (!v) return hideInc();
+  if (typeof v.ts === "number" && Math.abs(Date.now() - v.ts) > 60000) { remove(ref(db, "incoming/" + me.uid)).catch(() => {}); return; }
+  if (call) { update(ref(db, CK(v.cid)), { state: "declined" }).catch(() => {}); remove(ref(db, "incoming/" + me.uid)).catch(() => {}); return; }
+  inc = v; const u = await getUser(v.from); if (inc !== v) return;
+  $("#iAv").innerHTML = avatar(u, "lg"); $("#iNm").textContent = u.name; $("#iKd").textContent = v.kind === "video" ? "Appel vidéo entrant…" : "Appel vocal entrant…";
+  $("#inc").classList.remove("hidden"); startRing();
+  if (document.visibilityState !== "visible") notif(u.name, v.kind === "video" ? "📹 Appel vidéo entrant" : "📞 Appel vocal entrant", v.from, u.photo);
+}
+function endCall(notify, msg) {
+  const c = call; if (!c) return; call = null;
+  clearTimeout(c.ringT); clearInterval(c.tick); c.un.forEach(f => f());
+  try { c.pc.close(); } catch (e) {} c.stream.getTracks().forEach(t => t.stop());
+  $("#rv").srcObject = null; $("#lv").srcObject = null; $("#call").classList.add("hidden"); stopRing();
+  if (notify) {
+    update(ref(db, CK(c.cid)), { state: "ended" }).catch(() => {});
+    if (c.role === "caller") remove(ref(db, "incoming/" + c.other)).catch(() => {});
+    setTimeout(() => remove(ref(db, CK(c.cid))).catch(() => {}), 3000);
+  }
+  if (c.role === "caller" && me) { const d = c.t0 ? Math.round((Date.now() - c.t0) / 1000) : 0; sendMsg(c.other, d ? `📞 Appel ${c.kind === "video" ? "vidéo" : "vocal"} · ${fmtDur(d)}` : "📞 Appel manqué"); }
+  if (msg) toast(msg);
+}
+$("#callA").onclick = () => startCall("voice");
+$("#callV").onclick = () => startCall("video");
+$("#iYes").onclick = acceptCall; $("#iNo").onclick = declineCall;
+$("#cEnd").onclick = () => endCall(true);
+$("#cMic").onclick = e => { if (!call) return; const t = call.stream.getAudioTracks(); const on = !(t[0] && t[0].enabled); t.forEach(x => x.enabled = on); e.currentTarget.classList.toggle("off", !on); };
+$("#cCam").onclick = e => { if (!call) return; const t = call.stream.getVideoTracks(); const on = !(t[0] && t[0].enabled); t.forEach(x => x.enabled = on); e.currentTarget.classList.toggle("off", !on); };
+$("#cFlip").onclick = async () => {
+  if (!call || call.kind !== "video") return; const f = call.facing === "user" ? "environment" : "user";
+  try {
+    const ns = await navigator.mediaDevices.getUserMedia({ video: { facingMode: f } }), nt = ns.getVideoTracks()[0], old = call.stream.getVideoTracks()[0];
+    const sd = call.pc.getSenders().find(x => x.track && x.track.kind === "video"); if (sd) await sd.replaceTrack(nt);
+    if (old) { call.stream.removeTrack(old); old.stop(); } call.stream.addTrack(nt); call.facing = f; $("#lv").srcObject = call.stream;
+    $("#lv").style.transform = f === "user" ? "scaleX(-1)" : "none";
+  } catch (e) { toast("Changement de caméra impossible."); }
+};
+addEventListener("pagehide", () => { if (call) endCall(true); });
+
+/* ---------- historique des notifications + pastille sur l'icône ---------- */
+function syncBadge() {
+  if (!navigator.serviceWorker) return;
+  navigator.serviceWorker.ready.then(r => r.getNotifications()).then(l => { if (l.length) navigator.setAppBadge?.(l.length); else navigator.clearAppBadge?.(); }).catch(() => {});
+}
+function clearNotifs(uid) {
+  if (!navigator.serviceWorker) return;
+  navigator.serviceWorker.ready.then(r => r.getNotifications()).then(l => { l.filter(n => n.data && n.data.open === uid).forEach(n => n.close()); syncBadge(); }).catch(() => {});
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") syncBadge(); });
+
+/* ---------- diagnostic des notifications ---------- */
+document.addEventListener("click", e => { if (e.target.closest("[data-diag]")) notifDiag(); });
+async function notifDiag() {
+  if (!me) return; const L = [], ok = (t, good, x = "") => L.push((good ? "✅ " : "❌ ") + t + (x ? " : " + x : ""));
+  const sh = sheet(`<h3>Diagnostic notifications</h3><p id="dgT" style="text-align:left;white-space:pre-line">Analyse…</p><button class="btn big" data-a="x">Fermer</button>`);
+  const out = () => { const el = sh.querySelector("#dgT"); if (el) el.textContent = L.join("\n"); };
+  try {
+    ok("Notifications supportées", "Notification" in window && "PushManager" in window && !!navigator.serviceWorker, ios && !stand ? "iPhone : installe d’abord l’appli sur l’écran d’accueil" : "");
+    ok("Autorisation", "Notification" in window && Notification.permission === "granted", "Notification" in window ? Notification.permission : "non supporté"); out();
+    const reg = await navigator.serviceWorker.getRegistration(); ok("Service worker actif", !!(reg && reg.active)); out();
+    let sub = reg && await reg.pushManager.getSubscription();
+    if (!sub && reg && Notification.permission === "granted") { try { sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: u8(PUSH_PUB) }); } catch (e) { ok("Création de l’abonnement", false, e.name + " " + e.message); } }
+    ok("Abonnement push", !!sub, sub ? new URL(sub.endpoint).host : ""); out();
+    if (sub) {
+      const id = btoa(sub.endpoint).replace(/[^A-Za-z0-9]/g, "").slice(-32);
+      try { await set(ref(db, `push/${me.uid}/${id}`), sub.endpoint); ok("Enregistré dans Firebase", true); } catch (e) { ok("Enregistré dans Firebase", false, (e.code || e.message) + " → republie database.rules.json"); }
+      out();
+    }
+    ok("Adresse du relais", !!RELAY_URL, RELAY_URL ? "" : "vide dans index.html");
+    if (RELAY_URL) {
+      try { const c = await (await fetch(RELAY_URL.replace(/\/$/, "") + "/?check")).json(), miss = Object.keys(c).filter(k => k !== "TURN" && !c[k]); ok("Relais Cloudflare", !miss.length, miss.length ? "variables manquantes : " + miss.join(", ") : "variables OK"); }
+      catch (e) { ok("Relais Cloudflare", false, "injoignable ou ancien code"); }
+      out();
+      if (sub) {
+        try {
+          navigator.serviceWorker.controller?.postMessage({ diag: true });
+          const tok = await auth.currentUser.getIdToken(), r = await fetch(RELAY_URL, { method: "POST", headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" }, body: JSON.stringify({ endpoints: [sub.endpoint] }) }), t = await r.text();
+          ok("Envoi test via le relais", r.ok, r.ok ? "service push : " + (JSON.parse(t).sent || []).join(",") + " (201 = accepté)" : r.status + " " + t);
+        } catch (e) { ok("Envoi test via le relais", false, e.message); }
+        out();
+      }
+    }
+    L.push("\nSi tout est ✅ : mets l’appli en arrière-plan, une notification « Test push » doit arriver dans quelques secondes.");
+  } catch (e) { L.push("❌ Erreur : " + e.message); }
+  out();
+}
+
+/* ---------- toutes les notifications : demandes d'ami, réactions... ---------- */
+let inboxT = null;
+function inboxPost(to, type, text) {
+  if (!me) return;
+  push(ref(db, "inbox/" + to), { type, from: me.uid, text, ts: serverTimestamp() }).then(() => ping(to)).catch(() => {});
+}
+async function onInbox(v) {
+  const items = Object.entries(v || {}).map(([k, x]) => ({ k, ...x })).filter(x => typeof x.ts === "number");
+  if (inboxT === null) {
+    inboxT = items.reduce((m, x) => Math.max(m, x.ts), 0);
+    items.filter(x => Date.now() - x.ts > 3 * 864e5).forEach(x => remove(ref(db, `inbox/${me.uid}/${x.k}`)).catch(() => {}));
+    return;
+  }
+  for (const x of items.filter(i => i.ts > inboxT).sort((a, b) => a.ts - b.ts)) {
+    inboxT = Math.max(inboxT, x.ts); const u = await getUser(x.from), nm = u.name || u.id;
+    if (document.visibilityState === "visible") toast(nm + " " + x.text); else notif(nm, x.text, x.from, u.photo, x.ts);
+  }
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") regPush(); });
+
+/* ---------- visibilité + PWA ---------- */
+document.addEventListener("visibilitychange", () => { flush(); if (document.visibilityState === "visible" && active && me) { markRead(active); renderChats(); } });
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
+</body>
+</html>

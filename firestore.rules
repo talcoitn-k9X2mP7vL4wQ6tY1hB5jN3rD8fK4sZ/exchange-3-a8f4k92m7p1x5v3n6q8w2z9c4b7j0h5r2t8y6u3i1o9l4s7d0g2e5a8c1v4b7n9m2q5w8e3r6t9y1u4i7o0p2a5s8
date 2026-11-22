@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // TalcoExchange utilise Realtime Database, pas Firestore : tout est bloqué.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
