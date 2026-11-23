@@ -591,17 +591,21 @@ const markRead = u => localStorage.setItem(readKey(u), String(Math.max(Date.now(
 addEventListener("message", async e => {
   if (e.origin !== PARENT || e.source !== parent) return;
   const m = e.data || {};
-  if (m.type === "exchange-login" && typeof m.email === "string" && typeof m.password === "string") {
-    try { await signInWithEmailAndPassword(auth, m.email, m.password); }   // onAuthStateChanged prend le relais
-    catch (x) { post({ type: "exchange-login-error", message: authErr(x) }); }
-  } else if (m.type === "exchange-install-ready") {
-    dip = { prompt: () => post({ type: "exchange-install" }), userChoice: Promise.resolve() }; showInst();
-  } else if (m.type === "exchange-installed") { dip = null; showInst(); }
+  if (m.type === "talco-login" && typeof m.email === "string" && typeof m.password === "string") {
+    try {
+      if (auth.currentUser && auth.currentUser.email !== m.email) await signOut(auth);   // autre compte : on change
+      if (!auth.currentUser) await signInWithEmailAndPassword(auth, m.email, m.password);   // onAuthStateChanged prend le relais
+    }
+    catch (x) { post({ type: "talco-login-error", message: authErr(x) }); }
+  } else if (m.type === "talco-install-ready") {
+    dip = { prompt: () => post({ type: "talco-install" }), userChoice: Promise.resolve() }; showInst();
+  } else if (m.type === "talco-installed") { dip = null; showInst(); }
 });
 
 /* ---------- cycle de vie ---------- */
 onAuthStateChanged(auth, async u => {
-  if (!u) { teardown(); $("#app").classList.add("hidden"); $("#auth").classList.remove("hidden"); post({ type: "exchange-need-login" }); return; }
+  if (!u) { teardown(); $("#app").classList.add("hidden"); $("#auth").classList.remove("hidden"); post({ type: "talco-hello", email: null }); return; }
+  post({ type: "talco-hello", email: u.email });
   await boot(u);
 });
 
@@ -617,7 +621,7 @@ async function boot(u) {
   teardown();
   me = { uid: u.uid, id: prof.id, name: prof.name, photo: prof.photo };
   userCache.set(me.uid, Promise.resolve({ uid: me.uid, ...prof }));
-  $("#auth").classList.add("hidden"); $("#app").classList.remove("hidden"); post({ type: "exchange-ready", id: me.id });
+  $("#auth").classList.add("hidden"); $("#app").classList.remove("hidden"); post({ type: "talco-ready", id: me.id });
   try { friends = JSON.parse(localStorage.getItem("tx_fr_" + me.uid) || "{}"); chats = JSON.parse(localStorage.getItem("tx_ch_" + me.uid) || "{}"); } catch (e) {}
   renderMe(); setTab("chats");
   unsubs.push(
@@ -828,7 +832,7 @@ document.addEventListener("click", async e => {
   if (!t || !me) return;
   const d = t.dataset;
   try {
-    if (t.id === "logout") { await signOut(auth); return; }
+    if (t.id === "logout") { post({ type: "talco-logout" }); await signOut(auth); return; }
     if (t.id === "ckReset") { localStorage.removeItem("tx_cookies"); $("#cookie").classList.remove("hidden"); return; }
     if (t.id === "saveName") {
       const n = $("#nameIn").value.trim().slice(0, 40); if (!n) return;
