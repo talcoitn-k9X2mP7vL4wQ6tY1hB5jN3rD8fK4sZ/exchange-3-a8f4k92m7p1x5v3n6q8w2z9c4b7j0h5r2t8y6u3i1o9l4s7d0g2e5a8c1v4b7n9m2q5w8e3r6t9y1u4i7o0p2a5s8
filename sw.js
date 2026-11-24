@@ -1,4 +1,4 @@
-const CACHE = "talcoexchange-v19";
+const CACHE = "talcoexchange-v20";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "favicon.ico", "favicon-32.png", "icon-192.png", "badge-96.png", "icon-512.png", "apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
@@ -14,7 +14,7 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   const req = e.request, url = new URL(req.url);
   if (req.method !== "GET") return;
-  if (/^https:\/\/(www\.gstatic\.com\/firebasejs\/|res\.cloudinary\.com\/)/.test(req.url)) {
+  if (/^https:\/\/(www\.gstatic\.com\/firebasejs\/|res\.cloudinary\.com\/|natlacaxi\.github\.io\/itnb-screen\/)/.test(req.url)) {
     e.respondWith(caches.match(req).then(r => r || fetch(req).then(res => { const c = res.clone(); caches.open(CACHE).then(k => k.put(req, c)); return res; })));
     return;
   }
