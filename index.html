@@ -594,12 +594,12 @@ const markRead = u => localStorage.setItem(readKey(u), String(Math.max(Date.now(
 addEventListener("message", async e => {
   if (e.origin !== PARENT || e.source !== parent) return;
   const m = e.data || {};
-  if (m.type === "talco-login" && typeof m.email === "string" && typeof m.password === "string") {
+  if ((m.type === "talco-login" || m.type === "exchange-login") && typeof m.email === "string" && typeof m.password === "string") {
     try {
       if (auth.currentUser && auth.currentUser.email !== m.email) await signOut(auth);   // autre compte : on change
       if (!auth.currentUser) await signInWithEmailAndPassword(auth, m.email, m.password);   // onAuthStateChanged prend le relais
     }
-    catch (x) { post({ type: "talco-login-error", message: authErr(x) }); }
+    catch (x) { post({ type: "talco-login-error", message: authErr(x), code: x && x.code }); }
   } else if (m.type === "talco-install-ready") {
     dip = { prompt: () => post({ type: "talco-install" }), userChoice: Promise.resolve() }; showInst();
   } else if (m.type === "talco-installed") { dip = null; showInst(); }
